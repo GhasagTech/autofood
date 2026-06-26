@@ -1,36 +1,515 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>AutoFood | اطلب من مطاعم حي الخليج بنفس أسعار المطعم</title>
-
-  <meta name="description"
-        content="اطلب من مطاعم حي الخليج بنفس أسعار المطعم مع توصيل محلي أسرع وطلب داخل المطعم عبر QR.">
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoFood — مطاعم حي الخليج</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <div id="app">
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-auto">Auto</span><span class="logo-food">Food</span>
+      <span class="logo-by">by GhasagTech</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#restaurants">المطاعم</a></li>
+      <li><a href="#features">المميزات</a></li>
+      <li><a href="#register">سجل مجاناً</a></li>
+    </ul>
+    <a href="#register" class="btn-nav">سجل الآن</a>
+  </div>
+</nav>
 
-    <h1>AutoFood</h1>
-
-    <p>
-      اطلب من مطاعم حي الخليج المفضلة لديك بنفس أسعار المطعم.
-    </p>
-
-    <p>
-      قريباً...
-    </p>
-
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grain"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      حي الخليج — الرياض
+    </div>
 
+    <h1 class="hero-title">
+      اطلب من مطاعم<br>
+      <span class="title-highlight">حي الخليج المفضلة</span><br>
+      <span class="title-sub">بنفس أسعار المطعم</span>
+    </h1>
+
+    <p class="hero-desc">
+      تجربة طلب محلية أسرع وأسهل — طلب مسبق وطلب من طاولتك مباشرة عبر QR<br>
+      بدون عمولات مرتفعة، بدون انتظار
+    </p>
+
+    <div class="hero-cta">
+      <a href="#register" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        سجل مجاناً — كن من الأوائل
+      </a>
+      <a href="#restaurants" class="btn-ghost">
+        شاهد المطاعم
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" id="counter">1,248</span>
+        <span class="stat-label">مسجّل حتى الآن</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">7</span>
+        <span class="stat-label">مطاعم شريكة</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">252</span>
+        <span class="stat-label">مقعد متبقّي</span>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span>الأماكن المتبقية قبل اكتمال القائمة</span>
+        <span class="progress-pct">83%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 83%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating food images -->
+  <div class="hero-images">
+    <div class="food-float food-float-1">
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=80" alt="مشاوي">
+    </div>
+    <div class="food-float food-float-2">
+      <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=200&q=80" alt="سمك">
+    </div>
+    <div class="food-float food-float-3">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&q=80" alt="أكل صحي">
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>🔥 كسب للمشويات</span>
+    <span>✦</span>
+    <span>🫕 لمة بيت العز</span>
+    <span>✦</span>
+    <span>🍚 الكبسة الحساوية</span>
+    <span>✦</span>
+    <span>🐟 زاد الخليج للأسماك</span>
+    <span>✦</span>
+    <span>🥗 السعرات الذهبية</span>
+    <span>✦</span>
+    <span>🥩 مطعم كرم</span>
+    <span>✦</span>
+    <span>🕊️ أوقات الحمام</span>
+    <span>✦</span>
+    <!-- Repeat -->
+    <span>🔥 كسب للمشويات</span>
+    <span>✦</span>
+    <span>🫕 لمة بيت العز</span>
+    <span>✦</span>
+    <span>🍚 الكبسة الحساوية</span>
+    <span>✦</span>
+    <span>🐟 زاد الخليج للأسماك</span>
+    <span>✦</span>
+    <span>🥗 السعرات الذهبية</span>
+    <span>✦</span>
+    <span>🥩 مطعم كرم</span>
+    <span>✦</span>
+    <span>🕊️ أوقات الحمام</span>
+    <span>✦</span>
+  </div>
+</div>
+
+<!-- RESTAURANTS -->
+<section class="section" id="restaurants">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">شركاؤنا</span>
+      <h2 class="section-title">مطاعم حي الخليج</h2>
+      <p class="section-desc">7 مطاعم مختارة بعناية — كلها في حيّك</p>
+    </div>
+
+    <div class="restaurants-grid">
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="كسب للمشويات" class="rest-img">
+          <div class="rest-tag">مشاوي</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🔥</div>
+          <h3 class="rest-name">كسب للمشويات</h3>
+          <p class="rest-desc">مشاوي سورية أصيلة — اللحم المشوي على الفحم بنكهة لا تُقاوم</p>
+          <div class="rest-tags">
+            <span>مشاوي سورية</span>
+            <span>لحوم</span>
+            <span>دجاج</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=500&q=80" alt="لمة بيت العز" class="rest-img">
+          <div class="rest-tag">أردني</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🫕</div>
+          <h3 class="rest-name">لمة بيت العز</h3>
+          <p class="rest-desc">مطعم ومقهى — مشهور بالمنسف الأردني الأصيل والأجواء العائلية</p>
+          <div class="rest-tags">
+            <span>منسف أردني</span>
+            <span>مقهى</span>
+            <span>عائلي</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=500&q=80" alt="الكبسة الحساوية" class="rest-img">
+          <div class="rest-tag">حساوي</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🍚</div>
+          <h3 class="rest-name">الكبسة الحساوية</h3>
+          <p class="rest-desc">كبسة حساوية أصيلة — الوجبة السعودية بطعمها الأصلي المميز</p>
+          <div class="rest-tags">
+            <span>كبسة حساوية</span>
+            <span>أرز</span>
+            <span>لحم</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519984388953-d2406bc725e1?w=500&q=80" alt="زاد الخليج للأسماك" class="rest-img">
+          <div class="rest-tag">بحري</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🐟</div>
+          <h3 class="rest-name">زاد الخليج للأسماك</h3>
+          <p class="rest-desc">أسماك طازجة يومياً — مشوية ومقلية بأسلوب الخليج العريق</p>
+          <div class="rest-tags">
+            <span>أسماك</span>
+            <span>مأكولات بحرية</span>
+            <span>طازج</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80" alt="السعرات الذهبية" class="rest-img">
+          <div class="rest-tag">صحي</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🥗</div>
+          <h3 class="rest-name">السعرات الذهبية</h3>
+          <p class="rest-desc">أكل صحي فقط — وجبات متوازنة ومحسوبة السعرات لأسلوب حياة صحي</p>
+          <div class="rest-tags">
+            <span>أكل صحي</span>
+            <span>سلطات</span>
+            <span>دايت</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=500&q=80" alt="مطعم كرم" class="rest-img">
+          <div class="rest-tag">تركي</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🥩</div>
+          <h3 class="rest-name">مطعم كرم</h3>
+          <p class="rest-desc">مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p>
+          <div class="rest-tags">
+            <span>مشاوي تركية</span>
+            <span>كباب</span>
+            <span>لحوم</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card" data-aos>
+        <div class="rest-img-wrap">
+          <img src="https://images.unsplash.com/photo-1598514983318-2f64f8f4796c?w=500&q=80" alt="أوقات الحمام" class="rest-img">
+          <div class="rest-tag">حمام</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-icon">🕊️</div>
+          <h3 class="rest-name">أوقات الحمام</h3>
+          <p class="rest-desc">متخصص بالحمام والمشويات الهندية — نكهات فريدة لا تجدها في مكان آخر</p>
+          <div class="rest-tags">
+            <span>حمام</span>
+            <span>مشاوي هندية</span>
+            <span>دجاج</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY AUTOFOOD -->
+<section class="section section-dark" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">لماذا AutoFood؟</span>
+      <h2 class="section-title">تجربة مختلفة تماماً</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>طلب مسبق — لا انتظار</h3>
+        <p>اطلب وجبتك قبل وصولك. جاهزة بانتظارك بالضبط.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>اطلب من طاولتك عبر QR</h3>
+        <p>امسح الكود واطلب مباشرة — بدون موظف وبدون انتظار.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+        </div>
+        <h3>SmartFood AI — مستشارك الذكي</h3>
+        <p>قول "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+        </div>
+        <h3>نفس أسعار المطعم</h3>
+        <p>لا عمولات مخفية — ما تدفعه هو نفس ما تدفعه لو دخلت المطعم.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>دعم المطاعم المحلية</h3>
+        <p>كل طلب يدعم مطعماً من حيّك مباشرة — مش شركة كبيرة.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>توصيل سريع في الخليج</h3>
+        <p>التركيز على حي الخليج فقط — يعني أسرع توصيل وأفضل خدمة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMING SOON / SmartFood -->
+<section class="section section-gold">
+  <div class="container">
+    <div class="smartfood-wrap">
+      <div class="smartfood-text">
+        <span class="eyebrow eyebrow-dark">قريباً في AutoFood</span>
+        <h2>SmartFood AI<br><span>مستشارك الذكي للوجبات</span></h2>
+        <p>اسأله "وش أاكل اليوم؟" — يعرف ميزانيتك، يعرف ذوقك، يعرف مطاعم حيّك. ذكاء اصطناعي بالعربية، صُمّم خصيصاً لك.</p>
+        <ul class="smartfood-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            اقتراحات حسب ميزانيتك
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            يتذكر تفضيلاتك الغذائية
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            إدارة ميزانية الطعام الشهرية
+          </li>
+        </ul>
+      </div>
+      <div class="smartfood-chat">
+        <div class="chat-bubble chat-user">جوعان وعندي 50 ريال 🤔</div>
+        <div class="chat-bubble chat-ai">
+          <span class="ai-label">SmartFood AI</span>
+          عندي لك خيارين ممتازين في حيّك 🎯<br><br>
+          <strong>كبسة لحم — الكبسة الحساوية</strong><br>
+          38 ريال — وجبة كاملة ومشبعة<br><br>
+          <strong>مشاوي مشكّلة — كسب للمشويات</strong><br>
+          45 ريال — أكثر طلباً اليوم 🔥
+        </div>
+        <div class="chat-bubble chat-user">خذني للكبسة الحساوية!</div>
+        <div class="chat-typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER -->
+<section class="section" id="register">
+  <div class="container">
+    <div class="register-wrap">
+      <div class="register-left">
+        <span class="eyebrow">سجّل قبل الإطلاق</span>
+        <h2>كن من أوائل<br>المستخدمين</h2>
+        <p>سجّل الآن للحصول على دعوة خاصة وتجربة AutoFood قبل الإطلاق الرسمي في حي الخليج.</p>
+        <div class="register-perks">
+          <div class="perk">
+            <span class="perk-icon">🎁</span>
+            <div>
+              <strong>خصم 15%</strong>
+              <span>على أول 3 طلبات</span>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">⚡</span>
+            <div>
+              <strong>وصول مبكر</strong>
+              <span>قبل الإطلاق العام</span>
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">🏆</span>
+            <div>
+              <strong>عضوية بلاتينية</strong>
+              <span>لأول 500 مسجّل</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="register-form-wrap">
+        <div class="form-card" id="formCard">
+          <h3>سجّل مجاناً</h3>
+          <p class="form-sub">252 مقعداً متبقياً فقط</p>
+
+          <form id="registerForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://ghasagtech.github.io/autofood/thanks.html">
+            <input type="hidden" name="_subject" value="تسجيل جديد - AutoFood">
+            <input type="hidden" name="المصدر" value="Landing Page - حي الخليج">
+
+            <div class="form-group">
+              <label>الاسم الأول</label>
+              <input type="text" name="الاسم" placeholder="اسمك" required>
+            </div>
+            <div class="form-group">
+              <label>رقم الجوال</label>
+              <input type="tel" name="الجوال" placeholder="05xxxxxxxx" pattern="05[0-9]{8}" required>
+            </div>
+            <div class="form-group">
+              <label>المطعم المفضّل</label>
+              <select name="المطعم_المفضل">
+                <option value="">اختر مطعمك المفضّل</option>
+                <option>كسب للمشويات</option>
+                <option>لمة بيت العز</option>
+                <option>الكبسة الحساوية</option>
+                <option>زاد الخليج للأسماك</option>
+                <option>السعرات الذهبية</option>
+                <option>مطعم كرم</option>
+                <option>أوقات الحمام</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              سجّل مجاناً الآن
+            </button>
+          </form>
+
+          <p class="form-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            بياناتك محمية ولن تُشارك مع أي طرف ثالث وفقاً لأنظمة حماية البيانات في المملكة (PDPL)
+          </p>
+        </div>
+
+        <!-- Success state (hidden) -->
+        <div class="form-success" id="formSuccess" style="display:none">
+          <div class="success-icon">🎉</div>
+          <h3>تم التسجيل بنجاح!</h3>
+          <p>أهلاً بك في AutoFood. ستصلك رسالة على جوالك عند إطلاق التطبيق في حي الخليج.</p>
+          <p class="success-sub">كن جاهزاً — الإطلاق قريب 🚀</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo logo-footer">
+          <span class="logo-auto">Auto</span><span class="logo-food">Food</span>
+        </div>
+        <p>منصة الطلب المحلية لمطاعم حي الخليج — الرياض</p>
+        <div class="social-links">
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Snapchat">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.206.793c.99 0 4.347.276 5.93 3.821.529 1.193.403 3.219.299 4.847l-.003.06c-.012.18-.024.358-.029.53.14.075.321.15.565.15.667 0 1.535-.597 1.535-1.31.033-.7-.21-1.199-.667-1.499-.21-.15-.364-.3-.364-.45 0-.18.165-.3.375-.3.42 0 .893.45 1.16.75.42.48.662 1.109.662 1.768.027.932-.36 1.662-1.053 2.12-.285.18-.57.27-.855.27-.705 0-1.395-.48-1.786-.72.03.6.015 1.2-.06 1.8-.063.72-.33 2.22-1.263 3.72-.84 1.319-2.21 2.849-4.51 2.849-1.41 0-2.46-.44-3.12-1.2-.39-.45-.627-.99-.75-1.56-.24.24-.57.45-.855.45-.24 0-.42-.09-.54-.18-.12-.09-.21-.24-.21-.42 0-.225.15-.435.36-.57.27-.18.48-.345.573-.6a2.25 2.25 0 0 0 .12-.645c0-.54-.24-1.29-.72-1.83-.405-.45-.72-.81-.72-1.23 0-.21.06-.435.18-.63.12-.195.3-.315.51-.315.165 0 .315.09.42.195.42.42.75 1.23.75 1.8 0 .315-.075.66-.225.96.345-.165.69-.33 1.065-.33.36 0 .72.135.975.405.165.18.27.405.27.645 0 .18-.045.345-.135.51.18.15.345.36.48.57.24.345.375.75.375 1.155 0 .735-.345 1.41-.93 1.785a2.58 2.58 0 0 1-1.335.375c-.615 0-1.215-.225-1.65-.63-.165-.15-.3-.33-.405-.51a2.685 2.685 0 0 1-.39.87c.375.855 1.26 1.38 2.52 1.38 1.68 0 2.79-1.05 3.51-2.22.87-1.395 1.11-2.76 1.17-3.42.075-.72.075-1.44.045-2.07-.36.225-.99.645-1.665.645-.285 0-.585-.06-.84-.225-.21-.135-.39-.345-.48-.615-.03-.09-.045-.18-.045-.27 0-.405.285-.735.645-.735.09 0 .18.015.255.045.12.045.255.075.405.075.24 0 .51-.12.51-.42 0-.105-.03-.21-.06-.315-.105-.3-.12-.645-.09-1.005-.015-.03-.015-.06-.03-.09-.09-.405-.195-1.2-.135-1.995.09-1.185.495-2.25 1.23-2.775.69-.495 1.545-.72 2.37-.72z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="#restaurants">المطاعم</a></li>
+          <li><a href="#features">المميزات</a></li>
+          <li><a href="#register">سجّل مجاناً</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>قانوني</h4>
+        <ul>
+          <li><a href="#">سياسة الخصوصية</a></li>
+          <li><a href="#">الشروط والأحكام</a></li>
+          <li><a href="#">تواصل معنا</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AutoFood by GhasagTech — جميع الحقوق محفوظة</p>
+      <p>حي الخليج، الرياض، المملكة العربية السعودية</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>
