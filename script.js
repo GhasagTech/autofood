@@ -1,4 +1,24 @@
 // NAV SCROLL
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDrmacs2omRUdidfCXoMK5ZcRaUaTBnmXM",
+  authDomain: "autofood-2ed77.firebaseapp.com",
+  projectId: "autofood-2ed77",
+  storageBucket: "autofood-2ed77.firebasestorage.app",
+  messagingSenderId: "546017119145",
+  appId: "1:546017119145:web:5c3b51fb782c059233d2b8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
