@@ -71,14 +71,26 @@ if (form) {
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'جاري التسجيل...';
     btn.disabled = true;
-    const data = new FormData(form);
+    const data = new FormData(form);const registration = {
+  name: data.get('الاسم'),
+  phone: data.get('الجوال'),
+  restaurant: data.get('المطعم_المفضل'),
+  createdAt: new Date()
+};
     try {
-      await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+await addDoc(
+  collection(db, "registrations"),
+  registration
+);
+
+registered++;
+remaining = Math.max(
+  totalSpots - registered,
+  0
+);
+
+updateSpots();
     } catch(err) {}
-    registered = parseInt(localStorage.getItem('af_registered') || '0') + 1;
-    localStorage.setItem('af_registered', registered);
-    remaining = Math.max(0, totalSpots - registered);
-    updateSpots();
     formCard.style.display = 'none';
     formSuccess.style.display = 'block';
   });
