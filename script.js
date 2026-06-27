@@ -80,16 +80,7 @@ function updateSpots() {
     }
   }
 }
-  const spotsLeft = document.getElementById('spotsLeft');
-  const spotsForm = document.getElementById('spotsForm');
-  const progressFill = document.getElementById('progressFill');
-  if (spotsLeft) spotsLeft.textContent = remaining;
-  if (spotsForm) spotsForm.textContent = remaining;
-  if (progressFill) {
-    const pct = ((totalSpots - remaining) / totalSpots) * 100;
-    progressFill.style.width = pct + '%';
-  }
-}
+
 loadRegistrations();
 
 // FORM
