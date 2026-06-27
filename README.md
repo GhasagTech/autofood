@@ -1,2 +1,28 @@
-# autofood
-AutoFood - Hyperlocal Food Ordering Platform for Al Khaleej District, Riyadh
+# AutoFood
+
+Landing Page لمشروع AutoFood لجمع تسجيلات المهتمين قبل الإطلاق الرسمي.
+
+## الفكرة
+
+منصة محلية تجمع مطاعم حي الخليج المفضلة لديك في مكان واحد، مع طلب مباشر وتجربة أسرع وبنفس أسعار المطاعم.
+
+## المطاعم المشاركة عند الإطلاق
+
+* كسب للمشويات
+* لمة بيت العز
+* الكبسة الحساوية
+* زاد الخليج للأسماك
+* السعرات الذهبية
+* كرم
+* أوقات الحمام
+
+## التقنية المستخدمة
+
+* HTML5
+* CSS3
+* JavaScript
+
+## Powered By
+
+GhasagTech
+Software & Digital Solutions
