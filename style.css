@@ -16,7 +16,8 @@ ul{list-style:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(8,8,14,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
 .nav-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 1.5rem;display:flex;align-items:center;gap:1rem}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.nav-logo-img{height:40px;width:auto}
+.nav-logo-img{height:38px;width:auto}
+.nav-divider{width:1px;height:24px;background:rgba(201,168,76,.3);margin:0 4px}
 .nav-app-name{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .logo-ltr{direction:ltr;unicode-bidi:isolate;display:inline-flex;font-family:'Cairo',sans-serif;font-weight:900;font-size:1.2rem}
 .logo-auto{color:var(--txt)}
@@ -87,9 +88,10 @@ ul{list-style:none}
 .rest-tags{display:flex;flex-wrap:wrap;gap:5px}
 .rest-tags span{padding:2px 9px;background:var(--sur2);border-radius:6px;font-size:.72rem;color:var(--dim);font-weight:500}
 /* أوقات الحمام — نفس حجم البقية، يتمركز */
-.rest-card-wide{grid-column:2;margin-top:0}
+.rest-card-wide{grid-column:2;margin-top:0;max-width:100%}
 .rest-img-wrap-wide{position:relative;height:200px;overflow:hidden}
-.rest-img-wrap-wide .rest-img{width:100%;height:100%;object-fit:cover;object-position:center}
+.rest-img-wrap-wide .rest-img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s}
+.rest-card-wide:hover .rest-img-wrap-wide .rest-img{transform:scale(1.06)}
 .rest-body-wide{padding:1.25rem;text-align:right}
 
 /* FEATURES — صفان 3×2 */
@@ -135,11 +137,11 @@ ul{list-style:none}
 /* FOOTER */
 .footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 2rem 2rem}
 .footer-top{max-width:1200px;margin:0 auto 3rem;display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;align-items:start}
-.footer-brand{display:flex;flex-direction:column;gap:.875rem}
-.footer-logo-img{height:46px;width:auto}
+.footer-brand{display:flex;flex-direction:column;gap:1rem}
+.footer-logo-img{height:42px;width:auto}
 .footer-autofood{display:flex;align-items:center;gap:8px}
 .footer-autofood .logo-ltr{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.4rem;direction:ltr;unicode-bidi:isolate;display:inline-flex}
-.footer-tagline{font-size:.78rem;color:var(--dim);line-height:1.5}
+.footer-tagline{font-size:.78rem;color:var(--dim);line-height:1.5;max-width:220px}
 .footer-launch-badge{font-size:.6rem;font-weight:600;padding:2px 7px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);border-radius:100px;color:var(--gold);white-space:nowrap}
 .social-links{display:flex;gap:.6rem}
 .social-links a{width:36px;height:36px;background:var(--sur);border:1px solid var(--bdr);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
