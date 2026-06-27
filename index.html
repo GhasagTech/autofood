@@ -52,13 +52,13 @@ h1{font-family:'Cairo',sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:9
 .prog-fill{height:100%;background:linear-gradient(90deg,#A07830,var(--gold));border-radius:10px;transition:width .8s ease}
 .prog-lbl{font-size:.85rem;color:var(--gold);text-align:center;font-weight:600}
 
-/* TICKER — بدون فراغ أبداً */
-.ticker-wrap{overflow:hidden;background:var(--sur);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:14px 0;width:100%}
-.ticker-track{display:flex;animation:ticker 16s linear infinite;width:max-content}
-.ticker-set{display:inline-flex;align-items:center;gap:2rem;padding-left:2rem;flex-shrink:0}
-.ticker-set span{font-size:1.05rem;color:var(--txt);font-weight:600;white-space:nowrap}
+/* TICKER */
+.ticker-wrap{overflow:hidden;background:var(--sur);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:14px 0}
+.ticker-track{display:flex;animation:ticker 20s linear infinite}
+.ticker-set{display:flex;align-items:center;gap:2.5rem;padding-left:2.5rem;white-space:nowrap;flex-shrink:0}
+.ticker-set span{font-size:1.05rem;color:var(--txt);font-weight:600}
 .tdot{color:var(--gold)!important;font-size:.7rem!important}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* SECTIONS */
 .sec{padding:90px 2rem}
@@ -129,7 +129,7 @@ h1{font-family:'Cairo',sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:9
 
 /* FOOTER */
 .footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 2rem 2rem}
-.ft-grid{max-width:1200px;margin:0 auto 3rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2rem;align-items:start}
+.ft-grid{max-width:1200px;margin:0 auto 3rem;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:2rem;align-items:start;direction:rtl}
 .ft-brand{display:flex;flex-direction:column;gap:.875rem}
 .ft-brand img{height:34px;width:auto}
 .socials{display:flex;gap:.6rem}
@@ -256,7 +256,7 @@ h1{font-family:'Cairo',sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:9
 
       <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80" alt="مطعم كرم"><div class="rtag">تركي</div></div><div class="rb"><div class="ico">🥩</div><h3>مطعم كرم</h3><p>مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p><div class="rtags"><span>مشاوي تركية</span><span>كباب</span><span>لحوم</span></div></div></div>
 
-      <div class="rc r-center"><div class="ri"><img src="https://images.unsplash.com/photo-1598515213692-47a4a4d4d1a3?w=500&q=80" alt="أوقات الحمام"><div class="rtag">حمام</div></div><div class="rb"><div class="ico">🕊️</div><h3>أوقات الحمام</h3><p>متخصص بالحمام والمشويات — نكهات فريدة لا تجدها في مكان آخر</p><div class="rtags"><span>حمام</span><span>مشاوي</span><span>دجاج</span></div></div></div>
+      <div class="rc r-center"><div class="ri"><img src="https://images.unsplash.com/photo-1547558902-c0cbe91c1e3d?w=500&q=80" alt="أوقات الحمام"><div class="rtag">حمام</div></div><div class="rb"><div class="ico">🕊️</div><h3>أوقات الحمام</h3><p>متخصص بالحمام والمشويات — نكهات فريدة لا تجدها في مكان آخر</p><div class="rtags"><span>حمام</span><span>مشاوي</span><span>دجاج</span></div></div></div>
     </div>
   </div>
 </section>
