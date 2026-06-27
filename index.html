@@ -4,25 +4,180 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AutoFood — مطاعم حي الخليج</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#C9A84C;--gold2:#E8C96A;--bg:#08080E;--bg2:#0F0F1A;--sur:#1A1A2E;--sur2:#222236;--txt:#F0EEE8;--muted:#8A8AA0;--dim:#5A5A70;--bdr:rgba(201,168,76,.15);--r:16px}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--txt);direction:rtl;overflow-x:hidden;line-height:1.7}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:rgba(8,8,14,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.nav-inner{max-width:1200px;margin:0 auto;height:100%;padding:0 1.5rem;display:flex;align-items:center;gap:1rem}
+.nav-logo img{height:30px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:1.5rem;margin-right:auto}
+.nav-links a{font-size:.9rem;color:var(--muted);font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.btn-nav{padding:.45rem 1.1rem;background:var(--gold);color:#000;border-radius:8px;font-size:.85rem;font-weight:700;white-space:nowrap}
+.btn-nav:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 2rem}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.22) 0%,transparent 70%);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(107,79,187,.18) 0%,transparent 70%);bottom:0;right:0}
+.hero-content{position:relative;z-index:2;max-width:700px;margin:0 auto;text-align:center;width:100%}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:100px;font-size:.85rem;color:var(--gold);margin-bottom:1.5rem;font-weight:500}
+.dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+h1{font-family:'Cairo',sans-serif;font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.2;margin-bottom:1.25rem;letter-spacing:-1px}
+.hl{color:var(--gold)}
+.sub{font-size:clamp(1.4rem,3.5vw,2.6rem);color:var(--muted);font-weight:700}
+.hero-desc{font-size:1rem;color:var(--muted);margin-bottom:2rem;line-height:1.8}
+.cta{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:.875rem 1.75rem;background:var(--gold);color:#000;border-radius:12px;font-size:1rem;font-weight:700;box-shadow:0 0 30px rgba(201,168,76,.3);transition:all .2s}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-g{display:inline-flex;padding:.875rem 1.5rem;border:1px solid var(--bdr);border-radius:12px;font-size:.95rem;color:var(--muted);transition:all .2s}
+.btn-g:hover{border-color:var(--gold);color:var(--gold)}
+.h-stat{text-align:center;margin-bottom:1.5rem}
+.h-stat .n{display:block;font-family:'Cairo',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1}
+.h-stat .l{font-size:.8rem;color:var(--muted);margin-top:2px}
+.prog-wrap{max-width:400px;margin:0 auto}
+.prog-bar{height:6px;background:var(--sur2);border-radius:10px;overflow:hidden;margin-bottom:8px}
+.prog-fill{height:100%;background:linear-gradient(90deg,#A07830,var(--gold));border-radius:10px;transition:width .8s ease}
+.prog-lbl{font-size:.85rem;color:var(--gold);text-align:center;font-weight:600}
+
+/* TICKER */
+.ticker-wrap{overflow:hidden;background:var(--sur);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:14px 0}
+.ticker-track{display:flex;animation:ticker 20s linear infinite}
+.ticker-set{display:flex;align-items:center;gap:2.5rem;padding-left:2.5rem;white-space:nowrap;flex-shrink:0}
+.ticker-set span{font-size:1.05rem;color:var(--txt);font-weight:600}
+.tdot{color:var(--gold)!important;font-size:.7rem!important}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.sec{padding:90px 2rem}
+.sec-dark{background:var(--bg2)}
+.con{max-width:1200px;margin:0 auto}
+.sec-hd{text-align:center;margin-bottom:3.5rem}
+.eye{display:inline-block;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:.15em;padding:3px 12px;background:rgba(201,168,76,.1);border-radius:100px;margin-bottom:.75rem}
+.sec-t{font-family:'Cairo',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;letter-spacing:-.5px;margin-bottom:.5rem}
+.sec-d{color:var(--muted);font-size:.95rem}
+
+/* RESTAURANTS — 3 أعمدة متساوية */
+.r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+/* السابع يتمركز في الوسط */
+.r-center{grid-column:2}
+
+.rc{background:var(--sur);border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);transition:transform .3s,border-color .3s,box-shadow .3s}
+.rc:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.4);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.ri{position:relative;height:200px;overflow:hidden}
+.ri img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s}
+.rc:hover .ri img{transform:scale(1.06)}
+.rtag{position:absolute;top:12px;left:12px;padding:4px 12px;background:rgba(8,8,14,.85);backdrop-filter:blur(8px);border:1px solid var(--bdr);border-radius:100px;font-size:.72rem;color:var(--gold);font-weight:600}
+.rb{padding:1.25rem;text-align:right}
+.rb .ico{font-size:1.6rem;margin-bottom:.4rem}
+.rb h3{font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+.rb p{font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:.875rem}
+.rtags{display:flex;flex-wrap:wrap;gap:5px}
+.rtags span{padding:2px 9px;background:var(--sur2);border-radius:6px;font-size:.72rem;color:var(--dim);font-weight:500}
+
+/* FEATURES — صفان ثابتان 3×2 */
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.fc{padding:1.75rem;background:var(--sur);border-radius:var(--r);border:1px solid var(--bdr);transition:border-color .3s,transform .3s;text-align:center}
+.fc:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px)}
+.fi{width:50px;height:50px;background:rgba(201,168,76,.1);border-radius:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.fi svg{width:22px;height:22px;stroke:var(--gold)}
+.fc h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem}
+.fc p{font-size:.84rem;color:var(--muted);line-height:1.6}
+
+/* REGISTER */
+.reg-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.reg-l h2{font-family:'Cairo',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;letter-spacing:-.5px;margin-bottom:1rem;line-height:1.2}
+.reg-l p{color:var(--muted);margin-bottom:2rem;line-height:1.8}
+.perks{display:flex;flex-direction:column;gap:1rem}
+.perk{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--sur);border-radius:12px;border:1px solid var(--bdr)}
+.perk-ico{font-size:1.4rem}
+.perk div{display:flex;flex-direction:column}
+.perk strong{font-size:.9rem}
+.perk span{font-size:.78rem;color:var(--muted)}
+.fcard{background:var(--sur);border:1px solid var(--bdr);border-radius:20px;padding:2rem}
+.fhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.fhdr h3{font-family:'Cairo',sans-serif;font-size:1.35rem;font-weight:800}
+.spots-box{text-align:center;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:5px 12px}
+.spots-n{display:block;font-family:'Cairo',sans-serif;font-size:1.3rem;font-weight:900;color:var(--gold);line-height:1}
+.spots-l{font-size:.68rem;color:var(--muted)}
+.f-offer{font-size:.84rem;color:var(--gold);margin-bottom:1.25rem;font-weight:600}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.84rem;color:var(--muted);margin-bottom:5px;font-weight:500}
+.fg input,.fg select{width:100%;padding:.72rem 1rem;background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:10px;color:var(--txt);font-family:'Tajawal',sans-serif;font-size:.95rem;transition:border-color .2s;direction:rtl;-webkit-appearance:none}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.fg input::placeholder{color:var(--dim)}
+.btn-sub{width:100%;padding:.875rem;background:var(--gold);color:#000;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:.5rem;transition:all .2s}
+.btn-sub:hover{background:var(--gold2)}
+.legal{font-size:.74rem;color:var(--dim);margin-top:1rem;line-height:1.6;padding-top:1rem;border-top:1px solid var(--bdr)}
+.suc{background:var(--sur);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:3rem 2rem;text-align:center;display:none}
+.suc-ico{font-size:3rem;margin-bottom:1rem}
+.suc h3{font-size:1.4rem;font-weight:800;margin-bottom:.75rem}
+.suc p{color:var(--muted);line-height:1.7}
+.suc .gold{color:var(--gold);font-weight:600}
+
+/* FOOTER */
+.footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:4rem 2rem 2rem}
+.ft-grid{max-width:1200px;margin:0 auto 3rem;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:2rem;align-items:start;direction:rtl}
+.ft-brand{display:flex;flex-direction:column;gap:.875rem}
+.ft-brand img{height:34px;width:auto}
+.socials{display:flex;gap:.6rem}
+.socials a{width:36px;height:36px;background:var(--sur);border:1px solid var(--bdr);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
+.socials a:hover{border-color:var(--gold);color:var(--gold)}
+.socials svg{width:16px;height:16px}
+/* AutoFood عمود مستقل */
+.ft-app{display:flex;flex-direction:column;gap:6px;padding-top:2px}
+.ft-app-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.5rem;direction:ltr;unicode-bidi:isolate;display:inline-flex;gap:0}
+.ft-app-name .a{color:var(--txt)}
+.ft-app-name .f{color:var(--gold)}
+.ft-tag{font-size:.78rem;color:var(--dim);line-height:1.5}
+.ft-links h4{font-size:.88rem;font-weight:700;margin-bottom:.875rem}
+.ft-links ul{display:flex;flex-direction:column;gap:.55rem}
+.ft-links a{font-size:.84rem;color:var(--muted);transition:color .2s}
+.ft-links a:hover{color:var(--gold)}
+.ft-bot{max-width:1200px;margin:0 auto;padding-top:1.5rem;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.ft-bot p{font-size:.78rem;color:var(--dim)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .r-grid{grid-template-columns:repeat(2,1fr)}
+  .r-center{grid-column:auto}
+  .f-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .nav-inner{padding:0 1rem}
+  .nav-logo img{height:26px}
+  .btn-nav{padding:.38rem .85rem;font-size:.78rem}
+  .sec{padding:60px 1.25rem}
+  .hero{padding:72px 1.25rem 60px}
+  .r-grid{grid-template-columns:1fr}
+  .r-center{grid-column:auto}
+  .f-grid{grid-template-columns:1fr}
+  .reg-wrap{grid-template-columns:1fr;gap:2rem}
+  .ft-grid{grid-template-columns:1fr;gap:1.5rem}
+  .ft-bot{flex-direction:column;text-align:center}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
+<nav class="nav">
   <div class="nav-inner">
     <div class="nav-logo">
-      <img src="ghasaqtech-header-280w.png" srcset="ghasaqtech-header-280w.png 280w, ghasaqtech-header-560w.png 560w" sizes="(max-width:600px) 140px, 200px" alt="GhasaqTech" class="nav-logo-img">
-      <span class="nav-app-name">
-        <span class="logo-ltr"><span class="logo-auto">Auto</span><span class="logo-food">Food</span></span>
-        <span class="launch-badge">قيد الإطلاق</span>
-      </span>
+      <img src="ghasaqtech-header-280w.png" srcset="ghasaqtech-header-280w.png 280w,ghasaqtech-header-560w.png 560w" sizes="160px" alt="GhasaqTech">
     </div>
     <ul class="nav-links">
       <li><a href="#restaurants">المطاعم</a></li>
@@ -33,347 +188,211 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-  </div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="badge-dot"></span>حي الخليج — الرياض</div>
-    <h1 class="hero-title">
-      اطلب من مطاعم<br>
-      <span class="title-highlight">حي الخليج المفضلة</span><br>
-      <span class="title-sub">بنفس أسعار المطعم</span>
-    </h1>
+    <div class="badge"><span class="dot"></span>حي الخليج — الرياض</div>
+    <h1>اطلب من مطاعم<br><span class="hl">حي الخليج المفضلة</span><br><span class="sub">بنفس أسعار المطعم</span></h1>
     <p class="hero-desc">تجربة طلب محلية أسرع وأسهل — طلب مسبق وطلب من طاولتك مباشرة عبر QR<br>بدون عمولات مرتفعة، بدون انتظار</p>
-    <div class="hero-cta">
-      <a href="#register" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    <div class="cta">
+      <a href="#register" class="btn-p">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
         سجل مجاناً — كن من الأوائل
       </a>
-      <a href="#restaurants" class="btn-ghost">شاهد المطاعم</a>
+      <a href="#restaurants" class="btn-g">شاهد المطاعم</a>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num" id="spotsLeft">100</span>
-        <span class="stat-label">مقعد متبقّي</span>
-      </div>
+    <div class="h-stat">
+      <span class="n" id="spotsLeft">100</span>
+      <span class="l">مقعد متبقّي</span>
     </div>
-    <div class="progress-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-      <p class="progress-label">خصومات استثنائية لأول 100 عميل مسجّل</p>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="progressFill" style="width:0%"></div></div>
+      <p class="prog-lbl">خصومات استثنائية لأول 100 عميل مسجّل</p>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
+<!-- TICKER بدون فراغ -->
 <div class="ticker-wrap">
-  <div class="ticker">
-    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
-    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
+  <div class="ticker-track">
+    <div class="ticker-set">
+      <span>🔥 كسب للمشويات</span><span class="tdot">✦</span>
+      <span>🫕 لمة بيت العز</span><span class="tdot">✦</span>
+      <span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span>
+      <span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span>
+      <span>🥗 السعرات الذهبية</span><span class="tdot">✦</span>
+      <span>🥩 مطعم كرم</span><span class="tdot">✦</span>
+      <span>🕊️ أوقات الحمام</span><span class="tdot">✦</span>
+    </div><div class="ticker-set">
+      <span>🔥 كسب للمشويات</span><span class="tdot">✦</span>
+      <span>🫕 لمة بيت العز</span><span class="tdot">✦</span>
+      <span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span>
+      <span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span>
+      <span>🥗 السعرات الذهبية</span><span class="tdot">✦</span>
+      <span>🥩 مطعم كرم</span><span class="tdot">✦</span>
+      <span>🕊️ أوقات الحمام</span><span class="tdot">✦</span>
+    </div>
   </div>
 </div>
 
-<!-- RESTAURANTS -->
-<section class="section" id="restaurants">
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">شركاؤنا</span>
-      <h2 class="section-title">مطاعم حي الخليج</h2>
-      <p class="section-desc">مطاعم مختارة بعناية — كلها في حيّك</p>
+<section class="sec" id="restaurants">
+  <div class="con">
+    <div class="sec-hd">
+      <div class="eye">شركاؤنا</div>
+      <h2 class="sec-t">مطاعم حي الخليج</h2>
+      <p class="sec-d">مطاعم مختارة بعناية — كلها في حيّك</p>
     </div>
+    <div class="r-grid">
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80" alt="كسب للمشويات"><div class="rtag">مشاوي</div></div><div class="rb"><div class="ico">🔥</div><h3>كسب للمشويات</h3><p>مشاوي سورية أصيلة — اللحم المشوي على الفحم بنكهة لا تُقاوم</p><div class="rtags"><span>مشاوي سورية</span><span>لحوم</span><span>دجاج</span></div></div></div>
 
-    <!-- صف أول: 3 مطاعم -->
-    <div class="restaurants-grid">
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80" alt="كسب للمشويات" class="rest-img">
-          <div class="rest-tag">مشاوي</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🔥</div>
-          <h3 class="rest-name">كسب للمشويات</h3>
-          <p class="rest-desc-text">مشاوي سورية أصيلة — اللحم المشوي على الفحم بنكهة لا تُقاوم</p>
-          <div class="rest-tags"><span>مشاوي سورية</span><span>لحوم</span><span>دجاج</span></div>
-        </div>
-      </div>
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=80" alt="لمة بيت العز"><div class="rtag">أردني</div></div><div class="rb"><div class="ico">🫕</div><h3>لمة بيت العز</h3><p>مطعم ومقهى — مشهور بالمنسف الأردني الأصيل والأجواء العائلية</p><div class="rtags"><span>منسف أردني</span><span>مقهى</span><span>عائلي</span></div></div></div>
 
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500&q=80" alt="لمة بيت العز" class="rest-img">
-          <div class="rest-tag">أردني</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🫕</div>
-          <h3 class="rest-name">لمة بيت العز</h3>
-          <p class="rest-desc-text">مطعم ومقهى — مشهور بالمنسف الأردني الأصيل والأجواء العائلية</p>
-          <div class="rest-tags"><span>منسف أردني</span><span>مقهى</span><span>عائلي</span></div>
-        </div>
-      </div>
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=500&q=80" alt="الكبسة الحساوية"><div class="rtag">حساوي</div></div><div class="rb"><div class="ico">🍚</div><h3>الكبسة الحساوية</h3><p>كبسة حساوية أصيلة — الوجبة السعودية بطعمها الأصلي المميز</p><div class="rtags"><span>كبسة حساوية</span><span>أرز</span><span>لحم</span></div></div></div>
 
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=500&q=80" alt="الكبسة الحساوية" class="rest-img">
-          <div class="rest-tag">حساوي</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🍚</div>
-          <h3 class="rest-name">الكبسة الحساوية</h3>
-          <p class="rest-desc-text">كبسة حساوية أصيلة — الوجبة السعودية بطعمها الأصلي المميز</p>
-          <div class="rest-tags"><span>كبسة حساوية</span><span>أرز</span><span>لحم</span></div>
-        </div>
-      </div>
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?w=500&q=80" alt="زاد الخليج للأسماك"><div class="rtag">بحري</div></div><div class="rb"><div class="ico">🐟</div><h3>زاد الخليج للأسماك</h3><p>أسماك طازجة يومياً — مشوية ومقلية بأسلوب الخليج العريق</p><div class="rtags"><span>أسماك</span><span>مأكولات بحرية</span><span>طازج</span></div></div></div>
 
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?w=500&q=80" alt="زاد الخليج للأسماك" class="rest-img">
-          <div class="rest-tag">بحري</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🐟</div>
-          <h3 class="rest-name">زاد الخليج للأسماك</h3>
-          <p class="rest-desc-text">أسماك طازجة يومياً — مشوية ومقلية بأسلوب الخليج العريق</p>
-          <div class="rest-tags"><span>أسماك</span><span>مأكولات بحرية</span><span>طازج</span></div>
-        </div>
-      </div>
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80" alt="السعرات الذهبية"><div class="rtag">صحي</div></div><div class="rb"><div class="ico">🥗</div><h3>السعرات الذهبية</h3><p>أكل صحي فقط — وجبات متوازنة ومحسوبة السعرات لأسلوب حياة صحي</p><div class="rtags"><span>أكل صحي</span><span>سلطات</span><span>دايت</span></div></div></div>
 
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=80" alt="السعرات الذهبية" class="rest-img">
-          <div class="rest-tag">صحي</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🥗</div>
-          <h3 class="rest-name">السعرات الذهبية</h3>
-          <p class="rest-desc-text">أكل صحي فقط — وجبات متوازنة ومحسوبة السعرات لأسلوب حياة صحي</p>
-          <div class="rest-tags"><span>أكل صحي</span><span>سلطات</span><span>دايت</span></div>
-        </div>
-      </div>
+      <div class="rc"><div class="ri"><img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80" alt="مطعم كرم"><div class="rtag">تركي</div></div><div class="rb"><div class="ico">🥩</div><h3>مطعم كرم</h3><p>مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p><div class="rtags"><span>مشاوي تركية</span><span>كباب</span><span>لحوم</span></div></div></div>
 
-      <div class="rest-card">
-        <div class="rest-img-wrap">
-          <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80" alt="مطعم كرم" class="rest-img">
-          <div class="rest-tag">تركي</div>
-        </div>
-        <div class="rest-body">
-          <div class="rest-icon">🥩</div>
-          <h3 class="rest-name">مطعم كرم</h3>
-          <p class="rest-desc-text">مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p>
-          <div class="rest-tags"><span>مشاوي تركية</span><span>كباب</span><span>لحوم</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- أوقات الحمام — بطاقة عريضة منفردة -->
-    <div class="rest-card rest-card-wide">
-      <div class="rest-img-wrap-wide">
-        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=900&q=80" alt="أوقات الحمام" class="rest-img">
-        <div class="rest-tag">حمام</div>
-      </div>
-      <div class="rest-body rest-body-wide">
-        <div class="rest-icon">🕊️</div>
-        <h3 class="rest-name">أوقات الحمام</h3>
-        <p class="rest-desc-text">متخصص بالحمام والمشويات — نكهات فريدة لا تجدها في مكان آخر في حي الخليج</p>
-        <div class="rest-tags"><span>حمام</span><span>مشاوي</span><span>دجاج</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="section section-dark" id="features">
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">لماذا AutoFood؟</span>
-      <h2 class="section-title">تجربة مختلفة تماماً</h2>
-    </div>
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>طلب مسبق — لا انتظار</h3>
-        <p>اطلب وجبتك قبل وصولك. جاهزة بانتظارك بالضبط.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="17" y="17" width="4" height="4" rx="0.5"/></svg>
-        </div>
-        <h3>اطلب عبر QR من طاولتك</h3>
-        <p>امسح الكود واطلب مباشرة — بدون موظف وبدون انتظار.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>
-        </div>
-        <h3>SmartFood AI</h3>
-        <p>قول "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        </div>
-        <h3>توصيل سريع في الخليج</h3>
-        <p>التركيز على حي الخليج فقط — أسرع توصيل وأفضل خدمة.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>نفس أسعار المطعم</h3>
-        <p>لا عمولات مخفية — ما تدفعه هو نفس ما تدفعه لو دخلت المطعم.</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3>دعم المطاعم المحلية</h3>
-        <p>كل طلب يدعم مطعماً من حيّك مباشرة — مش شركة كبيرة.</p>
-      </div>
-
+      <div class="rc r-center"><div class="ri"><img src="https://images.unsplash.com/photo-1547558902-c0cbe91c1e3d?w=500&q=80" alt="أوقات الحمام"><div class="rtag">حمام</div></div><div class="rb"><div class="ico">🕊️</div><h3>أوقات الحمام</h3><p>متخصص بالحمام والمشويات — نكهات فريدة لا تجدها في مكان آخر</p><div class="rtags"><span>حمام</span><span>مشاوي</span><span>دجاج</span></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- REGISTER -->
-<section class="section" id="register">
-  <div class="container">
-    <div class="register-wrap">
-      <div class="register-left">
-        <span class="eyebrow">سجّل قبل الإطلاق</span>
+<section class="sec sec-dark" id="features">
+  <div class="con">
+    <div class="sec-hd">
+      <div class="eye">لماذا AutoFood؟</div>
+      <h2 class="sec-t">تجربة مختلفة تماماً</h2>
+    </div>
+    <div class="f-grid">
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>طلب مسبق — لا انتظار</h3><p>اطلب وجبتك قبل وصولك. جاهزة بانتظارك بالضبط.</p></div>
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="17" y="17" width="4" height="4"/></svg></div><h3>اطلب عبر QR من طاولتك</h3><p>امسح الكود واطلب مباشرة — بدون موظف وبدون انتظار.</p></div>
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg></div><h3>SmartFood AI</h3><p>اكتب "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p></div>
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h3>توصيل سريع في الخليج</h3><p>التركيز على حي الخليج فقط — أسرع توصيل وأفضل خدمة.</p></div>
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>نفس أسعار المطعم</h3><p>لا عمولات مخفية — ما تدفعه هو نفس ما تدفعه لو دخلت المطعم.</p></div>
+      <div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>دعم المطاعم المحلية</h3><p>كل طلب يدعم مطعماً من حيّك مباشرة.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="register">
+  <div class="con">
+    <div class="reg-wrap">
+      <div class="reg-l">
+        <div class="eye">سجّل قبل الإطلاق</div>
         <h2>كن من أوائل<br>المستخدمين</h2>
         <p>سجّل الآن للحصول على دعوة خاصة وتجربة AutoFood قبل الإطلاق الرسمي في حي الخليج.</p>
-        <div class="register-perks">
-          <div class="perk"><span class="perk-icon">🎁</span><div><strong>خصم 15%</strong><span>على أول 3 طلبات</span></div></div>
-          <div class="perk"><span class="perk-icon">⚡</span><div><strong>وصول مبكر</strong><span>قبل الإطلاق العام</span></div></div>
-          <div class="perk"><span class="perk-icon">🏆</span><div><strong>عضوية بلاتينية</strong><span>لأول 100 مسجّل</span></div></div>
+        <div class="perks">
+          <div class="perk"><span class="perk-ico">🎁</span><div><strong>خصم 15%</strong><span>على أول 3 طلبات</span></div></div>
+          <div class="perk"><span class="perk-ico">⚡</span><div><strong>وصول مبكر</strong><span>قبل الإطلاق العام</span></div></div>
+          <div class="perk"><span class="perk-ico">🏆</span><div><strong>عضوية بلاتينية</strong><span>لأول 100 مسجّل</span></div></div>
         </div>
       </div>
-
-      <div class="register-form-wrap">
-        <div class="form-card" id="formCard">
-          <div class="form-header">
+      <div>
+        <div class="fcard" id="formCard">
+          <div class="fhdr">
             <h3>سجّل مجاناً</h3>
-            <div class="spots-counter">
-              <span class="spots-num" id="spotsForm">100</span>
-              <span class="spots-lbl">مقعد متبقّي</span>
-            </div>
+            <div class="spots-box"><span class="spots-n" id="spotsForm">100</span><span class="spots-l">مقعد متبقّي</span></div>
           </div>
-          <p class="form-offer">⭐ خصومات استثنائية لأول 100 عميل مسجّل</p>
-<form id="registerForm" method="POST">
-            <div class="form-group">
-              <label>الاسم الأول</label>
-              <input type="text" name="الاسم" placeholder="اسمك" required>
-            </div>
-            <div class="form-group">
-              <label>رقم الجوال</label>
-              <input type="tel" name="الجوال" placeholder="05xxxxxxxx" required>
-            </div>
-            <div class="form-group">
-              <label>المطعم المفضّل</label>
+          <p class="f-offer">⭐ خصومات استثنائية لأول 100 عميل مسجّل</p>
+          <form id="regForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://ghasagtech.github.io/autofood/thanks.html">
+            <input type="hidden" name="_subject" value="تسجيل جديد - AutoFood">
+            <div class="fg"><label>الاسم الأول</label><input type="text" name="الاسم" placeholder="اسمك" required></div>
+            <div class="fg"><label>رقم الجوال</label><input type="tel" name="الجوال" placeholder="05xxxxxxxx" required></div>
+            <div class="fg"><label>المطعم المفضّل</label>
               <select name="المطعم_المفضل">
                 <option value="">اختر مطعمك المفضّل</option>
-                <option>كسب للمشويات</option>
-                <option>لمة بيت العز</option>
-                <option>الكبسة الحساوية</option>
-                <option>زاد الخليج للأسماك</option>
-                <option>السعرات الذهبية</option>
-                <option>مطعم كرم</option>
-                <option>أوقات الحمام</option>
+                <option>كسب للمشويات</option><option>لمة بيت العز</option><option>الكبسة الحساوية</option><option>زاد الخليج للأسماك</option><option>السعرات الذهبية</option><option>مطعم كرم</option><option>أوقات الحمام</option>
               </select>
             </div>
-            <button type="submit" class="btn-submit" id="submitBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <button type="submit" class="btn-sub" id="submitBtn">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               سجّل مجاناً الآن
             </button>
           </form>
-          <p class="form-legal">بالتسجيل، فأنت توافق على استخدام بياناتك فقط للتواصل معك بشأن إطلاق AutoFood. نلتزم بحماية بياناتك وعدم مشاركتها مع أي طرف ثالث وفقاً لأنظمة حماية البيانات الشخصية في المملكة العربية السعودية.</p>
+          <p class="legal">بالتسجيل، فأنت توافق على استخدام بياناتك فقط للتواصل معك بشأن إطلاق AutoFood. نلتزم بحماية بياناتك وعدم مشاركتها مع أي طرف ثالث وفقاً لأنظمة حماية البيانات الشخصية في المملكة العربية السعودية.</p>
         </div>
-        <div class="form-success" id="formSuccess" style="display:none">
-          <div class="success-icon">🎉</div>
+        <div class="suc" id="formSuccess">
+          <div class="suc-ico">🎉</div>
           <h3>تم التسجيل بنجاح!</h3>
-          <p>ستصلك رسالة على جوالك عند إطلاق التطبيق في حي الخليج.</p>
-          <p class="success-sub">الإطلاق قريب 🚀</p>
+          <p>ستصلك رسالة على جوالك عند إطلاق التطبيق.</p>
+          <p class="gold">الإطلاق قريب 🚀</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-
-      <!-- شعار الشركة -->
-      <div class="footer-brand">
-        <img src="ghasaqtech-header-280w.png" alt="GhasaqTech" class="footer-logo-img">
-        <div class="footer-autofood">
-          <span class="logo-ltr"><span class="logo-auto">Auto</span><span class="logo-food">Food</span></span>
-          <span class="footer-tagline">منصة الطعام الذكية الموحدة في السعودية</span>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="X">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="#" aria-label="Snapchat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.5 2 5.5 4.5 5.5 8.5c0 2 .4 3.8.9 5.2-.6.3-1.6.6-2.1.9-.3.2-.4.5-.2.8.4.7 1.8.9 2.8 1.1.2.5.4 1 .9 1.4.2.2 0 .6-.3.9-.2.3-.4.6-.2.9.7.7 3.5.2 5.2.2s4.5-.5 5.2-1.1c.2-.3 0-.6-.2-.9-.3-.3-.5-.7-.3-.9.5-.4.7-.9.9-1.4 1-.2 2.4-.4 2.8-1.1.2-.3 0-.6-.2-.8-.5-.3-1.5-.6-2.1-.9.5-1.4.9-3.2.9-5.2C18.5 4.5 15.5 2 12 2z"/></svg>
-          </a>
-          <a href="#" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a href="#" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.33 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
-          </a>
-        </div>
+  <div class="ft-grid">
+    <!-- عمود 1: شعار الشركة + سوشيال -->
+    <div class="ft-brand">
+      <img src="ghasaqtech-header-280w.png" alt="GhasaqTech">
+      <div class="socials">
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" aria-label="Snapchat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.5 2 5.5 4.5 5.5 8.5c0 2 .4 3.8.9 5.2-.6.3-1.6.6-2.1.9-.3.2-.4.5-.2.8.4.7 1.8.9 2.8 1.1.2.5.4 1 .9 1.4.2.2 0 .6-.3.9-.2.3-.4.6-.2.9.7.7 3.5.2 5.2.2s4.5-.5 5.2-1.1c.2-.3 0-.6-.2-.9-.3-.3-.5-.7-.3-.9.5-.4.7-.9.9-1.4 1-.2 2.4-.4 2.8-1.1.2-.3 0-.6-.2-.8-.5-.3-1.5-.6-2.1-.9.5-1.4.9-3.2.9-5.2C18.5 4.5 15.5 2 12 2z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.33 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
       </div>
-
-      <div class="footer-links">
-        <h4>روابط سريعة</h4>
-        <ul>
-          <li><a href="#restaurants">المطاعم</a></li>
-          <li><a href="#features">المميزات</a></li>
-          <li><a href="#register">سجّل مجاناً</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h4>قانوني</h4>
-        <ul>
-          <li><a href="#">سياسة الخصوصية</a></li>
-          <li><a href="#">الشروط والأحكام</a></li>
-          <li><a href="#">تواصل معنا</a></li>
-        </ul>
-      </div>
-
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 AutoFood by GhasaqTech — جميع الحقوق محفوظة</p>
-      <p>حي الخليج، الرياض، المملكة العربية السعودية</p>
+    <!-- عمود 2: AutoFood + tagline -->
+    <div class="ft-app">
+      <div class="ft-app-name"><span class="a">Auto</span><span class="f">Food</span></div>
+      <p class="ft-tag">منصة الطعام الذكية الموحدة في السعودية</p>
     </div>
+    <!-- عمود 3 -->
+    <div class="ft-links">
+      <h4>روابط سريعة</h4>
+      <ul><li><a href="#restaurants">المطاعم</a></li><li><a href="#features">المميزات</a></li><li><a href="#register">سجّل مجاناً</a></li></ul>
+    </div>
+    <!-- عمود 4 -->
+    <div class="ft-links">
+      <h4>قانوني</h4>
+      <ul><li><a href="#">سياسة الخصوصية</a></li><li><a href="#">الشروط والأحكام</a></li><li><a href="#">تواصل معنا</a></li></ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2026 AutoFood by GhasaqTech — جميع الحقوق محفوظة</p>
+    <p>الرياض، المملكة العربية السعودية</p>
   </div>
 </footer>
 
-<script type="module" src="script.js"></script>
+<script>
+// Spots counter
+let total=100,reg=parseInt(localStorage.getItem('af_reg')||'0'),rem=Math.max(0,total-reg);
+function updSpots(){
+  ['spotsLeft','spotsForm'].forEach(id=>{let e=document.getElementById(id);if(e)e.textContent=rem});
+  let pf=document.getElementById('progressFill');
+  if(pf)pf.style.width=((total-rem)/total*100)+'%';
+}
+updSpots();
+
+// Form
+document.getElementById('regForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  let btn=document.getElementById('submitBtn');
+  btn.textContent='جاري التسجيل...';btn.disabled=true;
+  try{await fetch(e.target.action,{method:'POST',body:new FormData(e.target),headers:{'Accept':'application/json'}})}catch(err){}
+  reg=parseInt(localStorage.getItem('af_reg')||'0')+1;
+  localStorage.setItem('af_reg',reg);rem=Math.max(0,total-reg);updSpots();
+  document.getElementById('formCard').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+});
+
+// Phone
+let ph=document.querySelector('input[type="tel"]');
+if(ph)ph.addEventListener('input',()=>{let v=ph.value.replace(/\D/g,'');if(!v.startsWith('05'))v='05'+v.replace(/^0*5?/,'');ph.value=v.slice(0,10)});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  let t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'})}
+}));
+</script>
 </body>
 </html>
