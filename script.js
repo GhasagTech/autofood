@@ -26,8 +26,26 @@ window.addEventListener('scroll', () => {
 
 // SPOTS COUNTER
 let totalSpots = 100;
-let registered = parseInt(localStorage.getItem('af_registered') || '0');
-let remaining = totalSpots - registered;
+let registered = 0;
+let remaining = totalSpots;
+
+async function loadRegistrations() {
+  try {
+    const snapshot = await getDocs(
+      collection(db, "registrations")
+    );
+
+    registered = snapshot.size;
+    remaining = Math.max(
+      totalSpots - registered,
+      0
+    );
+
+    updateSpots();
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 function updateSpots() {
   const spotsLeft = document.getElementById('spotsLeft');
@@ -40,7 +58,7 @@ function updateSpots() {
     progressFill.style.width = pct + '%';
   }
 }
-updateSpots();
+loadRegistrations();
 
 // FORM
 const form = document.getElementById('registerForm');
