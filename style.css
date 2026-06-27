@@ -16,7 +16,7 @@ ul { list-style: none; }
 .nav { position: fixed; top:0; left:0; right:0; z-index:100; padding:0 2rem; height:68px; display:flex; align-items:center; background:rgba(8,8,14,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
 .nav-inner { max-width:1200px; margin:0 auto; width:100%; display:flex; align-items:center; gap:1.5rem; }
 .nav-logo { display:flex; align-items:center; gap:10px; }
-.nav-logo-img { height:36px; width:auto; }
+.nav-logo-img { height:44px; width:auto; }
 .nav-app-name { display:flex; align-items:center; gap:8px; font-family:'Cairo',sans-serif; font-weight:900; font-size:1.3rem; }
 .logo-auto { color:var(--text); }
 .logo-food { color:var(--gold); }
@@ -58,9 +58,9 @@ ul { list-style: none; }
 
 /* TICKER */
 .ticker-wrap { overflow:hidden; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 0; }
-.ticker { display:flex; align-items:center; gap:2.5rem; white-space:nowrap; animation:ticker 22s linear infinite; width:max-content; }
-.ticker span { font-size:1.1rem; color:var(--text); font-weight:600; }
-.ticker-dot { color:var(--gold) !important; font-size:0.8rem !important; }
+.ticker { display:flex; align-items:center; white-space:nowrap; animation:ticker 22s linear infinite; width:max-content; }
+.ticker span { font-size:1.1rem; color:var(--text); font-weight:600; padding-left:2.5rem; }
+.ticker-dot { color:var(--gold) !important; font-size:0.8rem !important; padding-left:2.5rem; }
 @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* SECTIONS */
@@ -130,7 +130,7 @@ ul { list-style: none; }
 /* FOOTER */
 .footer { background:var(--bg2); border-top:1px solid var(--border); padding:4rem 2rem 2rem; }
 .footer-top { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; margin-bottom:3rem; }
-.footer-logo-img { height:40px; width:auto; margin-bottom:0.75rem; }
+.footer-logo-img { height:50px; width:auto; margin-bottom:0.5rem; }
 .footer-brand p { font-size:0.875rem; color:var(--text-muted); line-height:1.7; margin-bottom:1.25rem; }
 .social-links { display:flex; gap:0.75rem; }
 .social-links a { width:38px; height:38px; background:var(--surface); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.2s; }
@@ -145,5 +145,17 @@ ul { list-style: none; }
 
 /* RESPONSIVE */
 @media (max-width:900px) { .register-wrap{grid-template-columns:1fr;gap:2.5rem} .footer-top{grid-template-columns:1fr;gap:2rem} }
-@media (max-width:700px) { .nav-links{display:none} .hero-title{font-size:2rem} .restaurants-grid{grid-template-columns:1fr} .features-grid{grid-template-columns:1fr} .section{padding:70px 1.25rem} .hero{padding:80px 1.25rem 60px} .footer-bottom{flex-direction:column;text-align:center} }
+@media (max-width:700px) { .nav-links{display:none} .nav-logo-img{height:28px} .nav-app-name{font-size:1rem} .launch-badge{font-size:0.55rem;padding:2px 6px} .btn-nav{padding:0.4rem 0.8rem;font-size:0.78rem} .hero-title{font-size:2rem} .restaurants-grid{grid-template-columns:1fr} .features-grid{grid-template-columns:1fr} .section{padding:70px 1.25rem} .hero{padding:80px 1.25rem 60px} .footer-bottom{flex-direction:column;text-align:center} }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important} }
+
+/* Footer AutoFood row */
+.footer-autofood-row { display:flex; align-items:center; gap:8px; margin-bottom:0.5rem; }
+.footer-app-ltr { font-family:'Cairo',sans-serif; font-weight:900; font-size:1.4rem; direction:ltr; unicode-bidi:isolate; display:inline-flex; }
+.flogo-a { color:var(--text); }
+.flogo-f { color:var(--gold); }
+.footer-launch-badge { font-size:0.6rem; font-weight:600; padding:2px 8px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); border-radius:100px; color:var(--gold); }
+/* أوقات الحمام - نفس حجم البقية */
+.rest-card-wide { display:block !important; grid-column:auto !important; }
+.rest-img-wrap-wide { height:200px !important; }
+.rest-img-wrap-wide .rest-img { width:100%; height:100%; object-fit:cover; }
+.rest-body-wide { padding:1.25rem; }
