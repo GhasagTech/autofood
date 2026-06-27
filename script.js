@@ -51,6 +51,38 @@ function updateSpots() {
   const spotsLeft = document.getElementById('spotsLeft');
   const spotsForm = document.getElementById('spotsForm');
   const progressFill = document.getElementById('progressFill');
+
+  if (spotsLeft) spotsLeft.textContent = remaining;
+  if (spotsForm) spotsForm.textContent = remaining;
+
+  if (progressFill) {
+    const pct = ((totalSpots - remaining) / totalSpots) * 100;
+    progressFill.style.width = pct + '%';
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('registerForm');
+  const formOffer = document.querySelector('.form-offer');
+
+  if (remaining <= 0) {
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'اكتملت المقاعد';
+    }
+
+    if (formOffer) {
+      formOffer.textContent =
+        'انتهت المقاعد المخصصة لأول 100 مسجل';
+    }
+
+    if (form) {
+      form.style.opacity = '0.6';
+    }
+  }
+}
+  const spotsLeft = document.getElementById('spotsLeft');
+  const spotsForm = document.getElementById('spotsForm');
+  const progressFill = document.getElementById('progressFill');
   if (spotsLeft) spotsLeft.textContent = remaining;
   if (spotsForm) spotsForm.textContent = remaining;
   if (progressFill) {
