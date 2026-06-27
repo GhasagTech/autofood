@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AutoFood — مطاعم حي الخليج</title>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -14,9 +17,17 @@
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <div class="logo">
-      <span class="logo-auto">Auto</span><span class="logo-food">Food</span>
-      <span class="logo-by">by GhasagTech</span>
+    <div class="nav-logo">
+      <img src="ghasaqtech-header-280w.png"
+           srcset="ghasaqtech-header-280w.png 280w, ghasaqtech-header-560w.png 560w"
+           sizes="(max-width:600px) 140px, 200px"
+           alt="GhasaqTech" class="nav-logo-img">
+      <span class="nav-app-name">
+        <span style="direction:ltr;unicode-bidi:isolate;display:inline-flex;gap:0">
+          <span class="logo-auto">Auto</span><span class="logo-food">Food</span>
+        </span>
+        <span class="launch-badge">قيد الإطلاق</span>
+      </span>
     </div>
     <ul class="nav-links">
       <li><a href="#restaurants">المطاعم</a></li>
@@ -33,24 +44,20 @@
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
   </div>
-
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot"></span>
       حي الخليج — الرياض
     </div>
-
     <h1 class="hero-title">
       اطلب من مطاعم<br>
       <span class="title-highlight">حي الخليج المفضلة</span><br>
       <span class="title-sub">بنفس أسعار المطعم</span>
     </h1>
-
     <p class="hero-desc">
       تجربة طلب محلية أسرع وأسهل — طلب مسبق وطلب من طاولتك مباشرة عبر QR<br>
       بدون عمولات مرتفعة، بدون انتظار
     </p>
-
     <div class="hero-cta">
       <a href="#register" class="btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
@@ -58,7 +65,6 @@
       </a>
       <a href="#restaurants" class="btn-ghost">شاهد المطاعم</a>
     </div>
-
     <div class="hero-stats">
       <div class="stat">
         <span class="stat-num">7</span>
@@ -66,21 +72,13 @@
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <span class="stat-num">252</span>
+        <span class="stat-num" id="spotsLeft">100</span>
         <span class="stat-label">مقعد متبقّي</span>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat">
-        <span class="stat-num">83%</span>
-        <span class="stat-label">القائمة امتلأت</span>
-      </div>
     </div>
-
     <div class="progress-wrap">
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 83%"></div>
-      </div>
-      <p class="progress-label">سجّل قبل اكتمال القائمة</p>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <p class="progress-label">خصومات استثنائية لأول 100 عميل مسجّل</p>
     </div>
   </div>
 </section>
@@ -88,34 +86,20 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span>🔥 كسب للمشويات</span>
-    <span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span>
-    <span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span>
-    <span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span>
-    <span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span>
-    <span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span>
-    <span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span>
-    <span class="ticker-dot">✦</span>
-    <span>🔥 كسب للمشويات</span>
-    <span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span>
-    <span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span>
-    <span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span>
-    <span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span>
-    <span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span>
-    <span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span>
-    <span class="ticker-dot">✦</span>
+    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
+    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
+    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
+    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
+    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
+    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
+    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
+    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
+    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
+    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
+    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
+    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
+    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
+    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
   </div>
 </div>
 
@@ -127,7 +111,6 @@
       <h2 class="section-title">مطاعم حي الخليج</h2>
       <p class="section-desc">7 مطاعم مختارة بعناية — كلها في حيّك</p>
     </div>
-
     <div class="restaurants-grid">
 
       <div class="rest-card">
@@ -138,7 +121,7 @@
         <div class="rest-body">
           <div class="rest-icon">🔥</div>
           <h3 class="rest-name">كسب للمشويات</h3>
-          <p class="rest-desc">مشاوي سورية أصيلة — اللحم المشوي على الفحم بنكهة لا تُقاوم</p>
+          <p class="rest-desc-text">مشاوي سورية أصيلة — اللحم المشوي على الفحم بنكهة لا تُقاوم</p>
           <div class="rest-tags"><span>مشاوي سورية</span><span>لحوم</span><span>دجاج</span></div>
         </div>
       </div>
@@ -151,7 +134,7 @@
         <div class="rest-body">
           <div class="rest-icon">🫕</div>
           <h3 class="rest-name">لمة بيت العز</h3>
-          <p class="rest-desc">مطعم ومقهى — مشهور بالمنسف الأردني الأصيل والأجواء العائلية</p>
+          <p class="rest-desc-text">مطعم ومقهى — مشهور بالمنسف الأردني الأصيل والأجواء العائلية</p>
           <div class="rest-tags"><span>منسف أردني</span><span>مقهى</span><span>عائلي</span></div>
         </div>
       </div>
@@ -164,7 +147,7 @@
         <div class="rest-body">
           <div class="rest-icon">🍚</div>
           <h3 class="rest-name">الكبسة الحساوية</h3>
-          <p class="rest-desc">كبسة حساوية أصيلة — الوجبة السعودية بطعمها الأصلي المميز</p>
+          <p class="rest-desc-text">كبسة حساوية أصيلة — الوجبة السعودية بطعمها الأصلي المميز</p>
           <div class="rest-tags"><span>كبسة حساوية</span><span>أرز</span><span>لحم</span></div>
         </div>
       </div>
@@ -177,7 +160,7 @@
         <div class="rest-body">
           <div class="rest-icon">🐟</div>
           <h3 class="rest-name">زاد الخليج للأسماك</h3>
-          <p class="rest-desc">أسماك طازجة يومياً — مشوية ومقلية بأسلوب الخليج العريق</p>
+          <p class="rest-desc-text">أسماك طازجة يومياً — مشوية ومقلية بأسلوب الخليج العريق</p>
           <div class="rest-tags"><span>أسماك</span><span>مأكولات بحرية</span><span>طازج</span></div>
         </div>
       </div>
@@ -190,7 +173,7 @@
         <div class="rest-body">
           <div class="rest-icon">🥗</div>
           <h3 class="rest-name">السعرات الذهبية</h3>
-          <p class="rest-desc">أكل صحي فقط — وجبات متوازنة ومحسوبة السعرات لأسلوب حياة صحي</p>
+          <p class="rest-desc-text">أكل صحي فقط — وجبات متوازنة ومحسوبة السعرات لأسلوب حياة صحي</p>
           <div class="rest-tags"><span>أكل صحي</span><span>سلطات</span><span>دايت</span></div>
         </div>
       </div>
@@ -203,7 +186,7 @@
         <div class="rest-body">
           <div class="rest-icon">🥩</div>
           <h3 class="rest-name">مطعم كرم</h3>
-          <p class="rest-desc">مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p>
+          <p class="rest-desc-text">مشويات تركية فاخرة — للمأكولات التقليدية بنكهة المطبخ التركي الأصيل</p>
           <div class="rest-tags"><span>مشاوي تركية</span><span>كباب</span><span>لحوم</span></div>
         </div>
       </div>
@@ -216,8 +199,8 @@
         <div class="rest-body">
           <div class="rest-icon">🕊️</div>
           <h3 class="rest-name">أوقات الحمام</h3>
-          <p class="rest-desc">متخصص بالحمام والمشويات الهندية — نكهات فريدة لا تجدها في مكان آخر</p>
-          <div class="rest-tags"><span>حمام</span><span>مشاوي هندية</span><span>دجاج</span></div>
+          <p class="rest-desc-text">متخصص بالحمام والمشويات — نكهات فريدة لا تجدها في مكان آخر</p>
+          <div class="rest-tags"><span>حمام</span><span>مشاوي</span><span>دجاج</span></div>
         </div>
       </div>
 
@@ -225,7 +208,7 @@
   </div>
 </section>
 
-<!-- WHY AUTOFOOD -->
+<!-- FEATURES -->
 <section class="section section-dark" id="features">
   <div class="container">
     <div class="section-header">
@@ -233,48 +216,76 @@
       <h2 class="section-title">تجربة مختلفة تماماً</h2>
     </div>
     <div class="features-grid">
+
       <div class="feature-card">
         <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
         </div>
         <h3>طلب مسبق — لا انتظار</h3>
         <p>اطلب وجبتك قبل وصولك. جاهزة بانتظارك بالضبط.</p>
       </div>
+
       <div class="feature-card">
         <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="17" y="17" width="4" height="4" rx="0.5"/>
+          </svg>
         </div>
-        <h3>اطلب من طاولتك عبر QR</h3>
+        <h3>اطلب عبر QR من طاولتك</h3>
         <p>امسح الكود واطلب مباشرة — بدون موظف وبدون انتظار.</p>
       </div>
+
       <div class="feature-card">
         <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
-        </div>
-        <h3>SmartFood AI — مستشارك الذكي</h3>
-        <p>قول "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
-        </div>
-        <h3>نفس أسعار المطعم</h3>
-        <p>لا عمولات مخفية — ما تدفعه هو نفس ما تدفعه لو دخلت المطعم.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3>دعم المطاعم المحلية</h3>
-        <p>كل طلب يدعم مطعماً من حيّك مباشرة.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
         </div>
         <h3>توصيل سريع في الخليج</h3>
         <p>التركيز على حي الخليج فقط — أسرع توصيل وأفضل خدمة.</p>
       </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <circle cx="12" cy="17" r="0.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>SmartFood AI</h3>
+        <p>قول "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>نفس أسعار المطعم</h3>
+        <p>لا عمولات مخفية — ما تدفعه هو نفس ما تدفعه لو دخلت المطعم.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>دعم المطاعم المحلية</h3>
+        <p>كل طلب يدعم مطعماً من حيّك مباشرة — مش شركة كبيرة.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -290,14 +301,21 @@
         <div class="register-perks">
           <div class="perk"><span class="perk-icon">🎁</span><div><strong>خصم 15%</strong><span>على أول 3 طلبات</span></div></div>
           <div class="perk"><span class="perk-icon">⚡</span><div><strong>وصول مبكر</strong><span>قبل الإطلاق العام</span></div></div>
-          <div class="perk"><span class="perk-icon">🏆</span><div><strong>عضوية بلاتينية</strong><span>لأول 500 مسجّل</span></div></div>
+          <div class="perk"><span class="perk-icon">🏆</span><div><strong>عضوية بلاتينية</strong><span>لأول 100 مسجّل</span></div></div>
         </div>
       </div>
 
       <div class="register-form-wrap">
         <div class="form-card" id="formCard">
-          <h3>سجّل مجاناً</h3>
-          <p class="form-sub">252 مقعداً متبقياً فقط</p>
+          <div class="form-header">
+            <h3>سجّل مجاناً</h3>
+            <div class="spots-counter">
+              <span class="spots-num" id="spotsForm">100</span>
+              <span class="spots-lbl">مقعد متبقّي</span>
+            </div>
+          </div>
+          <p class="form-offer">⭐ خصومات استثنائية لأول 100 عميل مسجّل</p>
+
           <form id="registerForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_next" value="https://ghasagtech.github.io/autofood/thanks.html">
@@ -328,11 +346,12 @@
               سجّل مجاناً الآن
             </button>
           </form>
-          <p class="form-note">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            بياناتك محمية ولن تُشارك مع أي طرف ثالث
+
+          <p class="form-legal">
+            بالتسجيل، فأنت توافق على استخدام بياناتك فقط للتواصل معك بشأن إطلاق AutoFood. نلتزم بحماية بياناتك وعدم مشاركتها مع أي طرف ثالث وفقاً لأنظمة حماية البيانات الشخصية في المملكة العربية السعودية.
           </p>
         </div>
+
         <div class="form-success" id="formSuccess" style="display:none">
           <div class="success-icon">🎉</div>
           <h3>تم التسجيل بنجاح!</h3>
@@ -349,15 +368,21 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="logo logo-footer">
-          <span class="logo-auto">Auto</span><span class="logo-food">Food</span>
-        </div>
+        <img src="ghasaqtech-header-280w.png" alt="GhasaqTech" class="footer-logo-img">
         <p>منصة الطلب المحلية لمطاعم حي الخليج — الرياض</p>
         <div class="social-links">
-          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="#" aria-label="Snapchat"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg></a>
+          <a href="#" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" aria-label="Snapchat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 2 .5 4 1 5.5-.5.3-1.5.5-2 .8-.3.2-.5.5-.3.8.5.8 2 1 3 1.2.2.5.4 1 1 1.5.3.2 0 .7-.3 1-.3.3-.5.7-.2 1 .8.8 3.8.2 5.8.2s5-.6 5.8-1.4c.3-.3.1-.7-.2-1-.3-.3-.5-.8-.3-1 .6-.5.8-1 1-1.5 1-.2 2.5-.4 3-1.2.2-.3 0-.6-.3-.8-.5-.3-1.5-.5-2-.8.5-1.5 1-3.5 1-5.5 0-4-3-7-7-7z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-6.33 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-links">
@@ -378,7 +403,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 AutoFood by GhasagTech — جميع الحقوق محفوظة</p>
+      <p>© 2026 AutoFood by GhasaqTech — جميع الحقوق محفوظة</p>
       <p>حي الخليج، الرياض، المملكة العربية السعودية</p>
     </div>
   </div>
