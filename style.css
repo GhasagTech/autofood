@@ -58,8 +58,10 @@ ul { list-style: none; }
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="ticker-track">🔥 كسب للمشويات <span class="tdot">✦</span> 🫕 لمة بيت العز <span class="tdot">✦</span> 🍚 الكبسة الحساوية <span class="tdot">✦</span> 🐟 زاد الخليج للأسماك <span class="tdot">✦</span> 🥗 السعرات الذهبية <span class="tdot">✦</span> 🥩 مطعم كرم <span class="tdot">✦</span> 🕊️ أوقات الحمام <span class="tdot">✦</span> 🔥 كسب للمشويات <span class="tdot">✦</span> 🫕 لمة بيت العز <span class="tdot">✦</span> 🍚 الكبسة الحساوية <span class="tdot">✦</span> 🐟 زاد الخليج للأسماك <span class="tdot">✦</span> 🥗 السعرات الذهبية <span class="tdot">✦</span> 🥩 مطعم كرم <span class="tdot">✦</span> 🕊️ أوقات الحمام <span class="tdot">✦</span></div>
-</div>🔥 كسب للمشويات <span class="tdot">✦</span> 🫕 لمة بيت العز <span class="tdot">✦</span> 🍚 الكبسة الحساوية <span class="tdot">✦</span> 🐟 زاد الخليج للأسماك <span class="tdot">✦</span> 🥗 السعرات الذهبية <span class="tdot">✦</span> 🥩 مطعم كرم <span class="tdot">✦</span> 🕊️ أوقات الحمام <span class="tdot">✦</span> 🔥 كسب للمشويات <span class="tdot">✦</span> 🫕 لمة بيت العز <span class="tdot">✦</span> 🍚 الكبسة الحساوية <span class="tdot">✦</span> 🐟 زاد الخليج للأسماك <span class="tdot">✦</span> 🥗 السعرات الذهبية <span class="tdot">✦</span> 🥩 مطعم كرم <span class="tdot">✦</span> 🕊️ أوقات الحمام <span class="tdot">✦</span></div>
+  <div class="ticker-track">
+    <span>🔥 كسب للمشويات</span><span class="tdot">✦</span><span>🫕 لمة بيت العز</span><span class="tdot">✦</span><span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span><span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span><span>🥗 السعرات الذهبية</span><span class="tdot">✦</span><span>🥩 مطعم كرم</span><span class="tdot">✦</span><span>🕊️ أوقات الحمام</span><span class="tdot">✦</span><span>🔥 كسب للمشويات</span><span class="tdot">✦</span><span>🫕 لمة بيت العز</span><span class="tdot">✦</span><span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span><span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span><span>🥗 السعرات الذهبية</span><span class="tdot">✦</span><span>🥩 مطعم كرم</span><span class="tdot">✦</span><span>🕊️ أوقات الحمام</span><span class="tdot">✦</span>
+  </div>
+</div>
 
 /* SECTIONS */
 .section { padding:100px 2rem; }
