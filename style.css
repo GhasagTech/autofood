@@ -73,6 +73,7 @@ ul { list-style: none; }
   white-space: nowrap;
   gap: 2.5rem;
   animation: ticker 35s linear infinite;
+  justify-content: flex-start;
 }
 
 .ticker span {
