@@ -56,12 +56,11 @@ ul { list-style: none; }
 .progress-fill { height:100%; background:linear-gradient(90deg,#A07830,var(--gold)); border-radius:10px; transition:width 0.8s ease; }
 .progress-label { font-size:0.85rem; color:var(--gold); text-align:center; font-weight:600; }
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-track">
-    <span>🔥 كسب للمشويات</span><span class="tdot">✦</span><span>🫕 لمة بيت العز</span><span class="tdot">✦</span><span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span><span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span><span>🥗 السعرات الذهبية</span><span class="tdot">✦</span><span>🥩 مطعم كرم</span><span class="tdot">✦</span><span>🕊️ أوقات الحمام</span><span class="tdot">✦</span><span>🔥 كسب للمشويات</span><span class="tdot">✦</span><span>🫕 لمة بيت العز</span><span class="tdot">✦</span><span>🍚 الكبسة الحساوية</span><span class="tdot">✦</span><span>🐟 زاد الخليج للأسماك</span><span class="tdot">✦</span><span>🥗 السعرات الذهبية</span><span class="tdot">✦</span><span>🥩 مطعم كرم</span><span class="tdot">✦</span><span>🕊️ أوقات الحمام</span><span class="tdot">✦</span>
-  </div>
-</div>
+/* TICKER */
+.ticker-wrap { overflow: hidden; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; position: relative; }
+.ticker-track { display: flex; position: absolute; white-space: nowrap; }
+.ticker-track span { font-size: 1.05rem; color: var(--text); font-weight: 600; padding: 0 1.5rem; }
+.ticker-track .tdot { color: var(--gold); font-size: 0.75rem; padding: 0; }
 
 /* SECTIONS */
 .section { padding:100px 2rem; }
