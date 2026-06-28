@@ -57,10 +57,11 @@ ul { list-style: none; }
 .progress-label { font-size:0.85rem; color:var(--gold); text-align:center; font-weight:600; }
 
 /* TICKER */
-.ticker-wrap { overflow: hidden; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; position: relative; }
-.ticker-track { display: flex; position: absolute; white-space: nowrap; }
-.ticker-track span { font-size: 1.05rem; color: var(--text); font-weight: 600; padding: 0 1.5rem; }
-.ticker-track .tdot { color: var(--gold); font-size: 0.75rem; padding: 0; }
+.ticker-wrap { overflow:hidden; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 0; }
+.ticker { display:flex; align-items:center; white-space:nowrap; animation:ticker 22s linear infinite; width:max-content; }
+.ticker span { font-size:1.1rem; color:var(--text); font-weight:600; padding-left:2.5rem; }
+.ticker-dot { color:var(--gold) !important; font-size:0.8rem !important; padding-left:2.5rem; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
 /* SECTIONS */
 .section { padding:100px 2rem; }
