@@ -139,3 +139,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+// TICKER
+const wrap = document.getElementById('tickerWrap');
+const track = document.getElementById('tickerTrack');
+if (wrap && track) {
+  track.innerHTML += track.innerHTML;
+  let x = wrap.offsetWidth;
+  const halfW = track.scrollWidth / 2;
+  function move() {
+    x -= 1;
+    if (x <= -halfW) x = 0;
+    track.style.transform = `translateX(${x}px)`;
+    requestAnimationFrame(move);
+  }
+  requestAnimationFrame(move);
+}
