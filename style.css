@@ -179,3 +179,22 @@ ul { list-style: none; }
   .brand-icon { width:26px; height:26px; }
   .brand-name { font-size:.82rem; }
 }
+
+/* GhasagTech brand text */
+.ghasag-brand { display:flex; align-items:center; gap:8px; }
+.ghasag-icon { width:30px; height:30px; border-radius:7px; }
+.ghasag-text { display:flex; flex-direction:column; line-height:1; }
+.ghasag-name { font-family:'Cairo',sans-serif; font-weight:900; font-size:.95rem; color:var(--text); white-space:nowrap; }
+.ghasag-t { color:var(--gold); }
+.ghasag-sub { font-size:.5rem; color:var(--text-dim); white-space:nowrap; margin-top:2px; letter-spacing:.02em; }
+
+/* Footer larger */
+.ghasag-brand-lg { gap:10px; margin-bottom:.5rem; }
+.ghasag-icon-lg { width:42px; height:42px; border-radius:10px; }
+.ghasag-name-lg { font-size:1.25rem; }
+
+@media(max-width:700px){
+  .ghasag-sub { display:none; }
+  .ghasag-icon { width:24px; height:24px; }
+  .ghasag-name { font-size:.8rem; }
+}
