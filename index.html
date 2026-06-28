@@ -10,7 +10,217 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #C9A84C; --gold-light: #E8C96A;
+  --bg: #08080E; --bg2: #0F0F1A;
+  --surface: #1A1A2E; --surface2: #222236;
+  --text: #F0EEE8; --text-muted: #8A8AA0; --text-dim: #5A5A70;
+  --border: rgba(201,168,76,0.15); --radius: 16px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Tajawal','Cairo',sans-serif; background: var(--bg); color: var(--text); direction: rtl; overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* NAV */
+.nav { position: fixed; top:0; left:0; right:0; z-index:100; padding:0 2rem; height:68px; display:flex; align-items:center; background:rgba(8,8,14,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.nav-inner { max-width:1200px; margin:0 auto; width:100%; display:flex; align-items:center; gap:1.5rem; }
+.nav-logo { display:flex; align-items:center; gap:10px; }
+.nav-logo-img { height:44px; width:auto; }
+.nav-app-name { display:flex; align-items:center; gap:8px; font-family:'Cairo',sans-serif; font-weight:900; font-size:1.3rem; }
+.logo-auto { color:var(--text); }
+.logo-food { color:var(--gold); }
+.launch-badge { font-size:0.65rem; font-weight:600; padding:2px 8px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); border-radius:100px; color:var(--gold); white-space:nowrap; }
+.nav-links { display:flex; align-items:center; gap:2rem; margin-right:auto; }
+.nav-links a { font-size:0.9rem; color:var(--text-muted); transition:color 0.2s; font-weight:500; }
+.nav-links a:hover { color:var(--text); }
+.btn-nav { padding:0.5rem 1.25rem; background:var(--gold); color:#000; border-radius:8px; font-size:0.875rem; font-weight:700; transition:background 0.2s; white-space:nowrap; }
+.btn-nav:hover { background:var(--gold-light); }
+
+/* HERO */
+.hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; padding:68px 2rem 80px; }
+.hero-bg { position:absolute; inset:0; pointer-events:none; }
+.orb { position:absolute; border-radius:50%; filter:blur(80px); }
+.orb1 { width:500px; height:500px; background:radial-gradient(circle,rgba(201,168,76,0.25) 0%,transparent 70%); top:-100px; left:-100px; }
+.orb2 { width:400px; height:400px; background:radial-gradient(circle,rgba(107,79,187,0.18) 0%,transparent 70%); bottom:0; right:0; }
+.hero-content { position:relative; z-index:2; max-width:700px; margin:0 auto; text-align:center; width:100%; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:100px; font-size:0.85rem; color:var(--gold); margin-bottom:1.5rem; font-weight:500; }
+.badge-dot { width:7px; height:7px; background:var(--gold); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.hero-title { font-family:'Cairo',sans-serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:900; line-height:1.2; margin-bottom:1.25rem; letter-spacing:-1px; }
+.title-highlight { color:var(--gold); }
+.title-sub { font-size:clamp(1.6rem,3.5vw,2.8rem); color:var(--text-muted); font-weight:700; }
+.hero-desc { font-size:1.05rem; color:var(--text-muted); margin-bottom:2rem; line-height:1.8; }
+.hero-cta { display:flex; align-items:center; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+.btn-primary { display:inline-flex; align-items:center; gap:8px; padding:0.875rem 1.75rem; background:var(--gold); color:#000; border-radius:12px; font-size:1rem; font-weight:700; transition:all 0.2s; box-shadow:0 0 30px rgba(201,168,76,0.3); }
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); }
+.btn-ghost { display:inline-flex; align-items:center; gap:6px; padding:0.875rem 1.5rem; border:1px solid var(--border); border-radius:12px; font-size:0.95rem; color:var(--text-muted); transition:all 0.2s; }
+.btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+.hero-stats { display:flex; align-items:center; justify-content:center; gap:2rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+.stat { text-align:center; }
+.stat-num { display:block; font-family:'Cairo',sans-serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; }
+.stat-label { font-size:0.8rem; color:var(--text-muted); margin-top:2px; }
+.stat-divider { width:1px; height:40px; background:var(--border); }
+.progress-wrap { max-width:420px; margin:0 auto; }
+.progress-bar { height:6px; background:var(--surface2); border-radius:10px; overflow:hidden; margin-bottom:8px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#A07830,var(--gold)); border-radius:10px; transition:width 0.8s ease; }
+.progress-label { font-size:0.85rem; color:var(--gold); text-align:center; font-weight:600; }
+
+/* TICKER */
+.ticker-wrap { overflow:hidden; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 0; }
+.ticker { display:flex; align-items:center; white-space:nowrap; animation:ticker 22s linear infinite; width:max-content; }
+.ticker span { font-size:1.1rem; color:var(--text); font-weight:600; padding-left:2.5rem; }
+.ticker-dot { color:var(--gold) !important; font-size:0.8rem !important; padding-left:2.5rem; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* SECTIONS */
+.section { padding:100px 2rem; }
+.section-dark { background:var(--bg2); }
+.container { max-width:1200px; margin:0 auto; }
+.section-header { text-align:center; margin-bottom:4rem; }
+.eyebrow { display:inline-block; font-size:0.8rem; font-weight:700; color:var(--gold); letter-spacing:0.15em; margin-bottom:0.75rem; padding:4px 14px; background:rgba(201,168,76,0.1); border-radius:100px; }
+.section-title { font-family:'Cairo',sans-serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:900; letter-spacing:-0.5px; margin-bottom:0.75rem; line-height:1.2; }
+.section-desc { color:var(--text-muted); font-size:1rem; }
+
+/* RESTAURANTS */
+.restaurants-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.5rem; }
+.rest-card { background:var(--surface); border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s; }
+.rest-card:hover { transform:translateY(-6px); border-color:rgba(201,168,76,0.4); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+.rest-img-wrap { position:relative; height:200px; overflow:hidden; }
+.rest-img { width:100%; height:100%; object-fit:cover; object-position:center; transition:transform 0.5s; }
+.rest-card:hover .rest-img { transform:scale(1.06); }
+.rest-tag { position:absolute; top:12px; left:12px; padding:4px 12px; background:rgba(8,8,14,0.85); backdrop-filter:blur(10px); border:1px solid var(--border); border-radius:100px; font-size:0.75rem; color:var(--gold); font-weight:600; }
+.rest-body { padding:1.25rem; text-align:right; }
+.rest-icon { font-size:1.75rem; margin-bottom:0.5rem; }
+.rest-name { font-family:'Cairo',sans-serif; font-size:1.2rem; font-weight:700; margin-bottom:0.5rem; }
+.rest-desc-text { font-size:0.875rem; color:var(--text-muted); line-height:1.6; margin-bottom:1rem; }
+.rest-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.rest-tags span { padding:3px 10px; background:var(--surface2); border-radius:6px; font-size:0.75rem; color:var(--text-dim); font-weight:500; }
+
+/* FEATURES */
+.features-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.25rem; }
+.feature-card { padding:1.75rem; background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); transition:border-color 0.3s,transform 0.3s; }
+.feature-card:hover { border-color:rgba(201,168,76,0.35); transform:translateY(-3px); }
+.feature-icon { width:48px; height:48px; background:rgba(201,168,76,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+.feature-icon svg { width:22px; height:22px; stroke:var(--gold); }
+.feature-card h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; }
+.feature-card p { font-size:0.875rem; color:var(--text-muted); line-height:1.6; }
+
+/* REGISTER */
+.register-wrap { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
+.register-left h2 { font-family:'Cairo',sans-serif; font-size:clamp(2rem,3vw,2.8rem); font-weight:900; letter-spacing:-0.5px; margin-bottom:1rem; line-height:1.2; }
+.register-left p { color:var(--text-muted); margin-bottom:2rem; line-height:1.8; }
+.register-perks { display:flex; flex-direction:column; gap:1rem; }
+.perk { display:flex; align-items:center; gap:1rem; padding:1rem; background:var(--surface); border-radius:12px; border:1px solid var(--border); }
+.perk-icon { font-size:1.5rem; }
+.perk div { display:flex; flex-direction:column; }
+.perk strong { font-size:0.95rem; }
+.perk span { font-size:0.8rem; color:var(--text-muted); }
+.form-card { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:2rem; }
+.form-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem; }
+.form-header h3 { font-family:'Cairo',sans-serif; font-size:1.4rem; font-weight:800; }
+.spots-counter { text-align:center; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:10px; padding:6px 12px; }
+.spots-num { display:block; font-family:'Cairo',sans-serif; font-size:1.4rem; font-weight:900; color:var(--gold); line-height:1; }
+.spots-lbl { font-size:0.7rem; color:var(--text-muted); }
+.form-offer { font-size:0.85rem; color:var(--gold); margin-bottom:1.25rem; font-weight:600; }
+.form-group { margin-bottom:1rem; }
+.form-group label { display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:6px; font-weight:500; }
+.form-group input,.form-group select { width:100%; padding:0.75rem 1rem; background:var(--bg2); border:1px solid rgba(255,255,255,0.08); border-radius:10px; color:var(--text); font-family:'Tajawal',sans-serif; font-size:0.95rem; transition:border-color 0.2s; direction:rtl; -webkit-appearance:none; }
+.form-group input:focus,.form-group select:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.1); }
+.form-group input::placeholder { color:var(--text-dim); }
+.btn-submit { width:100%; padding:0.9rem; background:var(--gold); color:#000; border:none; border-radius:12px; font-family:'Tajawal',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; margin-top:0.5rem; transition:all 0.2s; }
+.btn-submit:hover { background:var(--gold-light); }
+.form-legal { font-size:0.75rem; color:var(--text-dim); margin-top:1rem; line-height:1.6; padding-top:1rem; border-top:1px solid var(--border); }
+.form-success { background:var(--surface); border:1px solid rgba(201,168,76,0.3); border-radius:20px; padding:3rem 2rem; text-align:center; }
+.success-icon { font-size:3rem; margin-bottom:1rem; }
+.form-success h3 { font-size:1.5rem; font-weight:800; margin-bottom:0.75rem; }
+.form-success p { color:var(--text-muted); line-height:1.7; }
+.success-sub { color:var(--gold); margin-top:0.5rem; font-weight:600; }
+
+/* FOOTER */
+.footer { background:var(--bg2); border-top:1px solid var(--border); padding:4rem 2rem 2rem; }
+.footer-top { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; margin-bottom:3rem; }
+.footer-logo-img { height:50px; width:auto; margin-bottom:0.5rem; }
+.footer-brand p { font-size:0.875rem; color:var(--text-muted); line-height:1.7; margin-bottom:1.25rem; }
+.social-links { display:flex; gap:0.75rem; }
+.social-links a { width:38px; height:38px; background:var(--surface); border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all 0.2s; }
+.social-links a:hover { border-color:var(--gold); color:var(--gold); }
+.social-links svg { width:17px; height:17px; }
+.footer-links h4 { font-size:0.9rem; font-weight:700; margin-bottom:1rem; }
+.footer-links ul { display:flex; flex-direction:column; gap:0.6rem; }
+.footer-links a { font-size:0.875rem; color:var(--text-muted); transition:color 0.2s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-bottom { max-width:1200px; margin:0 auto; padding-top:1.5rem; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
+.footer-bottom p { font-size:0.8rem; color:var(--text-dim); }
+
+/* RESPONSIVE */
+@media (max-width:900px) { .register-wrap{grid-template-columns:1fr;gap:2.5rem} .footer-top{grid-template-columns:1fr;gap:2rem} }
+@media (max-width:700px) { .nav-links{display:none} .nav-logo-img{height:28px} .nav-app-name{font-size:1rem} .launch-badge{font-size:0.55rem;padding:2px 6px} .btn-nav{padding:0.4rem 0.8rem;font-size:0.78rem} .hero-title{font-size:2rem} .restaurants-grid{grid-template-columns:1fr} .features-grid{grid-template-columns:1fr} .section{padding:70px 1.25rem} .hero{padding:80px 1.25rem 60px} .footer-bottom{flex-direction:column;text-align:center} }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important} }
+
+/* Footer AutoFood row */
+.footer-autofood-row { display:flex; align-items:center; gap:8px; margin-bottom:0.5rem; }
+.footer-app-ltr { font-family:'Cairo',sans-serif; font-weight:900; font-size:1.4rem; direction:ltr; unicode-bidi:isolate; display:inline-flex; }
+.flogo-a { color:var(--text); }
+.flogo-f { color:var(--gold); }
+.footer-launch-badge { font-size:0.6rem; font-weight:600; padding:2px 8px; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.4); border-radius:100px; color:var(--gold); }
+/* أوقات الحمام - نفس حجم البقية */
+.rest-card-wide { display:block !important; grid-column:auto !important; }
+.rest-img-wrap-wide { height:200px !important; }
+.rest-img-wrap-wide .rest-img { width:100%; height:100%; object-fit:cover; }
+.rest-body-wide { padding:1.25rem; }
+
+/* Brand Logo — أيقونة + نص */
+.brand-logo { display:flex; align-items:center; gap:8px; }
+.brand-icon { width:32px; height:32px; border-radius:8px; }
+.brand-text { display:flex; flex-direction:column; gap:0; line-height:1; }
+.brand-name { font-family:'Cairo',sans-serif; font-weight:900; font-size:.95rem; color:var(--text); letter-spacing:-.3px; white-space:nowrap; }
+.brand-name-gold { color:var(--gold); }
+.brand-tagline { font-size:.52rem; color:var(--text-dim); white-space:nowrap; margin-top:1px; }
+.nav-sep { width:1px; height:22px; background:rgba(201,168,76,.3); margin:0 6px; }
+
+/* Footer brand larger */
+.brand-logo-lg { gap:10px; margin-bottom:.75rem; }
+.brand-icon-lg { width:44px; height:44px; border-radius:10px; }
+.brand-name-lg { font-size:1.2rem; }
+
+@media(max-width:700px){
+  .brand-tagline { display:none; }
+  .brand-icon { width:26px; height:26px; }
+  .brand-name { font-size:.82rem; }
+}
+
+/* GhasagTech brand text */
+.ghasag-brand { display:flex; align-items:center; gap:8px; }
+.ghasag-icon { width:30px; height:30px; border-radius:7px; }
+.ghasag-text { display:flex; flex-direction:column; line-height:1; }
+.ghasag-name { font-family:'Cairo',sans-serif; font-weight:900; font-size:.95rem; color:var(--text); white-space:nowrap; }
+.ghasag-t { color:var(--gold); }
+.ghasag-sub { font-size:.5rem; color:var(--text-dim); white-space:nowrap; margin-top:2px; letter-spacing:.02em; }
+
+/* Footer larger */
+.ghasag-brand-lg { gap:10px; margin-bottom:.5rem; }
+.ghasag-icon-lg { width:42px; height:42px; border-radius:10px; }
+.ghasag-name-lg { font-size:1.25rem; }
+
+@media(max-width:700px){
+  .ghasag-sub { display:none; }
+  .ghasag-icon { width:24px; height:24px; }
+  .ghasag-name { font-size:.8rem; }
+}
+
+.gt-brand{display:flex;align-items:center;gap:8px}
+.gt-icon{width:30px;height:30px;border-radius:7px}
+.gt-txt{display:flex;flex-direction:column;line-height:1}
+.gt-name{font-family:"Cairo",sans-serif;font-weight:900;font-size:.95rem;color:#F0EEE8;white-space:nowrap}
+.gt-gold{color:#C9A84C}
+.gt-sub{font-size:.5rem;color:#5A5A70;white-space:nowrap;margin-top:2px}
+.gt-brand-lg{gap:10px;margin-bottom:.5rem}
+.gt-icon-lg{width:40px;height:40px;border-radius:9px}
+@media(max-width:700px){.gt-sub{display:none}.gt-icon{width:24px;height:24px}.gt-name{font-size:.8rem}}
+</style>
 </head>
 <body>
 
@@ -18,19 +228,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <div class="nav-logo">
-      <div class="gs-logo">
-        <svg width="32" height="32" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <rect width="50" height="50" rx="10" fill="#13112A"/>
-          <path d="M 25 8 A 17 17 0 1 0 25 42" stroke="#8B6FD4" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <circle cx="25" cy="8" r="3.5" fill="#8B6FD4"/>
-          <circle cx="25" cy="42" r="3.5" fill="#8B6FD4"/>
-          <circle cx="43" cy="25" r="6" fill="#F5B731"/>
-        </svg>
-        <div class="gs-text">
-          <span class="gs-name">Ghasag<span class="gs-gold">Tech</span></span>
-          <span class="gs-sub">Software &amp; Digital Solutions</span>
-        </div>
-      </div>
+      <img src="ghasagtech-header-280w.png" srcset="ghasagtech-header-280w.png 280w, ghasagtech-header-560w.png 560w" sizes="(max-width:600px) 140px, 200px" alt="GhasagTech" class="nav-logo-img">
       <span class="nav-app-name">
         <span class="logo-ltr"><span class="logo-auto">Auto</span><span class="logo-food">Food</span></span>
         <span class="launch-badge">قيد الإطلاق</span>
@@ -82,20 +280,6 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
-    <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
-    <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
-    <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
-    <span>🐟 زاد الخليج للأسماك</span><span class="ticker-dot">✦</span>
-    <span>🥗 السعرات الذهبية</span><span class="ticker-dot">✦</span>
-    <span>🥩 مطعم كرم</span><span class="ticker-dot">✦</span>
-    <span>🕊️ أوقات الحمام</span><span class="ticker-dot">✦</span>
     <span>🔥 كسب للمشويات</span><span class="ticker-dot">✦</span>
     <span>🫕 لمة بيت العز</span><span class="ticker-dot">✦</span>
     <span>🍚 الكبسة الحساوية</span><span class="ticker-dot">✦</span>
@@ -250,7 +434,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg>
         </div>
         <h3>SmartFood AI</h3>
-        <p>قول "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
+        <p>اكتب "جوعان وعندي 50 ريال" — يقترح لك الأنسب من مطاعم حيّك.</p>
       </div>
 
       <div class="feature-card">
@@ -274,7 +458,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h3>دعم المطاعم المحلية</h3>
-        <p>كل طلب يدعم مطعماً من حيّك مباشرة — مش شركة كبيرة.</p>
+        <p>كل طلب يدعم مطعماً من حيّك مباشرة.</p>
       </div>
 
     </div>
@@ -353,19 +537,7 @@
 
       <!-- شعار الشركة -->
       <div class="footer-brand">
-        <div class="gs-logo gs-logo-lg">
-          <svg width="44" height="44" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-            <rect width="50" height="50" rx="10" fill="#13112A"/>
-            <path d="M 25 8 A 17 17 0 1 0 25 42" stroke="#8B6FD4" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <circle cx="25" cy="8" r="3.5" fill="#8B6FD4"/>
-            <circle cx="25" cy="42" r="3.5" fill="#8B6FD4"/>
-            <circle cx="43" cy="25" r="6" fill="#F5B731"/>
-          </svg>
-          <div class="gs-text">
-            <span class="gs-name">Ghasag<span class="gs-gold">Tech</span></span>
-            <span class="gs-sub">Software &amp; Digital Solutions</span>
-          </div>
-        </div>
+        <img src="ghasagtech-header-280w.png" alt="GhasagTech" class="footer-logo-img">
         <div class="footer-autofood">
           <span class="logo-ltr"><span class="logo-auto">Auto</span><span class="logo-food">Food</span></span>
           <span class="footer-tagline">منصة الطعام الذكية الموحدة في السعودية</span>
@@ -374,9 +546,7 @@
           <a href="#" aria-label="X">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <a href="#" aria-label="Snapchat">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C8.5 2 5.5 4.5 5.5 8.5c0 2 .4 3.8.9 5.2-.6.3-1.6.6-2.1.9-.3.2-.4.5-.2.8.4.7 1.8.9 2.8 1.1.2.5.4 1 .9 1.4.2.2 0 .6-.3.9-.2.3-.4.6-.2.9.7.7 3.5.2 5.2.2s4.5-.5 5.2-1.1c.2-.3 0-.6-.2-.9-.3-.3-.5-.7-.3-.9.5-.4.7-.9.9-1.4 1-.2 2.4-.4 2.8-1.1.2-.3 0-.6-.2-.8-.5-.3-1.5-.6-2.1-.9.5-1.4.9-3.2.9-5.2C18.5 4.5 15.5 2 12 2z"/></svg>
-          </a>
+          
           <a href="#" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
@@ -407,7 +577,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2026 AutoFood by GhasagTech — جميع الحقوق محفوظة</p>
-      <p>حي الخليج، الرياض، المملكة العربية السعودية</p>
+      <p>الرياض، المملكة العربية السعودية</p>
     </div>
   </div>
 </footer>
