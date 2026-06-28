@@ -96,7 +96,7 @@ ul { list-style: none; }
     transform: translateX(-2rem);
   }
   to {
-    transform: translateX(calc(-50% - 3.25rem));
+    transform: translateX(calc(-50% - 10rem));
   }
 }
 
