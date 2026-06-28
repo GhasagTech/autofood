@@ -93,10 +93,10 @@ ul { list-style: none; }
 
 @keyframes ticker {
   from {
-    transform: translateX(0);
+    transform: translateX(-2rem);
   }
   to {
-    transform: translateX(calc(-50% - 1.25rem));
+    transform: translateX(calc(-50% - 3.25rem));
   }
 }
 
